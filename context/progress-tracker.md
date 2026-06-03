@@ -112,6 +112,7 @@ Prepare for Unit 10: Cart Persistence.
 - Unit 09 drawer layout follow-up completed: cart drawer switched to deterministic viewport grid rows and compact item cards so the item list is visible between the drawer header and summary.
 - Unit 09 add-to-cart feedback follow-up completed: add-to-cart buttons now show a short local "Added" confirmation with an icon and accessible label after each click.
 - Unit 09 header navigation follow-up completed: the Products header action now links back to the catalog route instead of using a no-op content anchor.
+- Unit 10 specification created (`context/specs/10-cart-persistence.md`).
 
 ## In Progress
 
@@ -119,7 +120,7 @@ Prepare for Unit 10: Cart Persistence.
 
 ## Next Up
 
-- Create or review the Unit 10 specification before implementing Cart Persistence.
+- Review and implement Unit 10: Cart Persistence.
 
 ## Open Questions
 
@@ -176,6 +177,7 @@ Prepare for Unit 10: Cart Persistence.
 - Unit 09 keeps cart route composition server-first by rendering `/cart` as a Server Component shell around a client `CartPage`.
 - Unit 09 keeps header layout server-first by extracting only cart interactivity into `CartHeaderAction`.
 - Unit 09 preserves product detail navigation by separating product card links from add-to-cart buttons.
+- Unit 10 will persist cart state with a versioned `localStorage` payload and validated client-side hydration.
 
 ## Session Notes
 
@@ -252,3 +254,4 @@ Prepare for Unit 10: Cart Persistence.
 - Unit 09 drawer layout follow-up verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
 - Unit 09 add-to-cart feedback follow-up verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
 - Unit 09 header navigation follow-up verification passed: `pnpm type-check` and `pnpm lint`.
+- Unit 10 specification has been created and limits the next implementation to localStorage persistence, hydration, storage validation, storage failure recovery, and tests without checkout, backend storage, or product refetching.
