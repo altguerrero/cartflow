@@ -8,7 +8,7 @@ Implementation
 
 ## Current Goal
 
-Prepare for Unit 07: Product Detail Page.
+Implement Unit 07: Product Detail Page.
 
 ## Build Plan
 
@@ -87,6 +87,7 @@ Prepare for Unit 07: Product Detail Page.
 - Product URL state unit tests added for valid query parsing, invalid fallback behavior, default omission, combined serialization, ordering, immutability, and whitespace search handling.
 - Product catalog now uses Next.js App Router navigation APIs for URL hydration, refresh/share preservation, and browser back/forward support.
 - Homepage remains a Server Component and wraps the URL-driven catalog in `Suspense` for static rendering compatibility with `useSearchParams`.
+- Unit 07 specification created (`context/specs/07-product-detail-page.md`).
 
 ## In Progress
 
@@ -94,7 +95,7 @@ Prepare for Unit 07: Product Detail Page.
 
 ## Next Up
 
-- Create or review the Unit 07 specification before implementing the Product Detail Page.
+- Implement Unit 07: Product Detail Page.
 
 ## Open Questions
 
@@ -197,3 +198,4 @@ Prepare for Unit 07: Product Detail Page.
 - Unit 06 verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
 - Production build required escalated network access for Google Fonts.
 - Local server verification confirmed HTTP 200 responses for valid and invalid catalog query parameter URLs.
+- Unit 07 specification has been created and limits the next implementation to dynamic product detail pages, read-only product details, product card navigation, and catalog-state-preserving back navigation.
