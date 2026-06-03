@@ -1,6 +1,7 @@
 import type {
   AddCartItemInput,
   CartAction,
+  CartState,
 } from "@/features/cart/types/cart.types";
 import { CART_ACTION_TYPES } from "@/features/cart/types/cart.types";
 
@@ -36,5 +37,12 @@ export function removeCartItem(productId: number): CartAction {
 export function clearCart(): CartAction {
   return {
     type: CART_ACTION_TYPES.clear,
+  };
+}
+
+export function hydrateCart(state: CartState): CartAction {
+  return {
+    type: CART_ACTION_TYPES.hydrate,
+    payload: state,
   };
 }

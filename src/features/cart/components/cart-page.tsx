@@ -11,7 +11,7 @@ import { CartSummary } from "@/features/cart/components/cart-summary";
 import { useCart } from "@/features/cart/hooks/use-cart";
 
 export function CartPage() {
-  const { clearCart, isEmpty, items } = useCart();
+  const { clearCart, isEmpty, isHydrated, items } = useCart();
 
   return (
     <Container className="py-10 sm:py-14 lg:py-16">
@@ -43,7 +43,12 @@ export function CartPage() {
           </Button>
         </div>
 
-        {isEmpty ? (
+        {!isHydrated ? (
+          <EmptyState
+            title="Loading cart"
+            description="Restoring saved cart items."
+          />
+        ) : isEmpty ? (
           <EmptyState
             title="Your cart is empty"
             description="Add products from the catalog to start building your order."

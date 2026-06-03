@@ -6,9 +6,17 @@ export { useCart } from "@/features/cart/hooks/use-cart";
 export {
   addCartItem,
   clearCart,
+  hydrateCart,
   removeCartItem,
   updateCartItemQuantity,
 } from "@/features/cart/reducer/cart.actions";
+export {
+  CART_STORAGE_KEY,
+  clearPersistedCartState,
+  parsePersistedCartState,
+  readPersistedCartState,
+  writePersistedCartState,
+} from "@/features/cart/persistence/cart-storage";
 export {
   cartReducer,
   INITIAL_CART_STATE,
@@ -34,3 +42,7 @@ export type {
   CartItem,
   CartState,
 } from "@/features/cart/types/cart.types";
+export type {
+  CartStorageReadResult,
+  CartStorageWriteResult,
+} from "@/features/cart/persistence/cart-storage";

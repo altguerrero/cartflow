@@ -24,6 +24,8 @@ export function cartReducer(state: CartState, action: CartAction): CartState {
       return removeItemFromCart(state, action.payload.productId);
     case CART_ACTION_TYPES.clear:
       return state.items.length === 0 ? state : INITIAL_CART_STATE;
+    case CART_ACTION_TYPES.hydrate:
+      return action.payload;
   }
 }
 

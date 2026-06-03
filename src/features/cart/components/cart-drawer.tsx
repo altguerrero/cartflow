@@ -32,7 +32,7 @@ const FOCUSABLE_SELECTOR = [
 ].join(",");
 
 export function CartDrawer({ isOpen, onClose, triggerRef }: CartDrawerProps) {
-  const { clearCart, isEmpty, items, totalQuantity } = useCart();
+  const { clearCart, isEmpty, isHydrated, items, totalQuantity } = useCart();
   const titleId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -99,7 +99,7 @@ export function CartDrawer({ isOpen, onClose, triggerRef }: CartDrawerProps) {
     <div className="fixed inset-0 z-[60]" role="presentation">
       <button
         type="button"
-        className="absolute inset-0 bg-black/35 backdrop-blur-[2px]"
+        className="fixed inset-0 h-dvh w-dvw bg-black/35 backdrop-blur-[2px]"
         aria-label="Close cart drawer"
         onClick={onClose}
       />
@@ -118,9 +118,11 @@ export function CartDrawer({ isOpen, onClose, triggerRef }: CartDrawerProps) {
               Cart
             </h2>
             <p className="text-muted text-sm">
-              {totalQuantity === 1
-                ? "1 product selected"
-                : `${totalQuantity} products selected`}
+              {!isHydrated
+                ? "Loading cart..."
+                : totalQuantity === 1
+                  ? "1 product selected"
+                  : `${totalQuantity} products selected`}
             </p>
           </div>
 
@@ -136,7 +138,15 @@ export function CartDrawer({ isOpen, onClose, triggerRef }: CartDrawerProps) {
           </Button>
         </div>
 
-        {isEmpty ? (
+        {!isHydrated ? (
+          <div className="flex min-h-0 items-center px-5">
+            <EmptyState
+              title="Loading cart"
+              description="Restoring saved cart items."
+              className="w-full"
+            />
+          </div>
+        ) : isEmpty ? (
           <div className="flex min-h-0 items-center px-5">
             <EmptyState
               title="Your cart is empty"

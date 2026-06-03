@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   addCartItem,
   clearCart,
+  hydrateCart,
   removeCartItem,
   updateCartItemQuantity,
 } from "@/features/cart/reducer/cart.actions";
@@ -95,6 +96,21 @@ describe("cart reducer", () => {
     expect(cartReducer(createCartState(), clearCart())).toEqual({
       items: [],
     });
+  });
+
+  it("hydrates cart state by replacing the current state", () => {
+    const persistedState: CartState = {
+      items: [
+        {
+          ...ring,
+          quantity: 3,
+        },
+      ],
+    };
+
+    expect(cartReducer(createCartState(), hydrateCart(persistedState))).toEqual(
+      persistedState,
+    );
   });
 
   it("returns unchanged state for no-op removal or update", () => {

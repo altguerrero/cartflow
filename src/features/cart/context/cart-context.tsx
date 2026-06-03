@@ -3,6 +3,7 @@
 import {
   createContext,
   useCallback,
+  useEffect,
   useMemo,
   useReducer,
   type ReactNode,
@@ -11,9 +12,15 @@ import {
 import {
   addCartItem,
   clearCart,
+  hydrateCart,
   removeCartItem,
   updateCartItemQuantity,
 } from "@/features/cart/reducer/cart.actions";
+import {
+  clearPersistedCartState,
+  readPersistedCartState,
+  writePersistedCartState,
+} from "@/features/cart/persistence/cart-storage";
 import {
   cartReducer,
   INITIAL_CART_STATE,
@@ -39,6 +46,34 @@ export const CartContext = createContext<CartContextValue | undefined>(
 
 export function CartProvider({ children }: CartProviderProps) {
   const [state, dispatch] = useReducer(cartReducer, INITIAL_CART_STATE);
+  const [isHydrated, markHydrated] = useReducer(() => true, false);
+
+  useEffect(() => {
+    const persistedCart = readPersistedCartState();
+
+    if (persistedCart.status === "success") {
+      dispatch(hydrateCart(persistedCart.state));
+    }
+
+    if (persistedCart.status === "invalid") {
+      clearPersistedCartState();
+    }
+
+    markHydrated();
+  }, []);
+
+  useEffect(() => {
+    if (!isHydrated) {
+      return;
+    }
+
+    if (state.items.length === 0) {
+      clearPersistedCartState();
+      return;
+    }
+
+    writePersistedCartState(state);
+  }, [isHydrated, state]);
 
   const addItem = useCallback((item: AddCartItemInput) => {
     dispatch(addCartItem(item));
@@ -67,12 +102,20 @@ export function CartProvider({ children }: CartProviderProps) {
       totalQuantity: getCartTotalQuantity(state),
       subtotal: getCartSubtotal(state),
       isEmpty: isCartEmpty(state),
+      isHydrated,
       addItem,
       updateItemQuantity,
       removeItem,
       clearCart: clearCartItems,
     }),
-    [addItem, clearCartItems, removeItem, state, updateItemQuantity],
+    [
+      addItem,
+      clearCartItems,
+      isHydrated,
+      removeItem,
+      state,
+      updateItemQuantity,
+    ],
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

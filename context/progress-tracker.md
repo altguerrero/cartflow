@@ -8,7 +8,7 @@ Implementation
 
 ## Current Goal
 
-Prepare for Unit 10: Cart Persistence.
+Prepare for Unit 11: Loading & Error States.
 
 ## Build Plan
 
@@ -21,7 +21,7 @@ Prepare for Unit 10: Cart Persistence.
 - [x] Unit 07: Product Detail Page
 - [x] Unit 08: Cart State Management
 - [x] Unit 09: Cart UI & Interactions
-- [ ] Unit 10: Cart Persistence
+- [x] Unit 10: Cart Persistence
 - [ ] Unit 11: Loading & Error States
 - [ ] Unit 12: Testing
 - [ ] Unit 13: Performance & Final Polish
@@ -113,6 +113,15 @@ Prepare for Unit 10: Cart Persistence.
 - Unit 09 add-to-cart feedback follow-up completed: add-to-cart buttons now show a short local "Added" confirmation with an icon and accessible label after each click.
 - Unit 09 header navigation follow-up completed: the Products header action now links back to the catalog route instead of using a no-op content anchor.
 - Unit 10 specification created (`context/specs/10-cart-persistence.md`).
+- Unit 10 completed: cart state now persists to a versioned `localStorage` payload and hydrates after client mount.
+- Cart persistence adapter added under `src/features/cart/persistence` with safe read, write, clear, parse, validation, and recoverable storage failure handling.
+- Cart reducer, actions, and types now support a pure hydration action that replaces current cart state with validated persisted state.
+- Cart provider now hydrates once after mount, avoids writing the initial empty cart before hydration, persists hydrated cart updates, and clears storage for empty carts.
+- Cart header, drawer, and cart page now use minimal hydration-safe UI so persisted carts do not flash as empty before restoration.
+- Cart persistence unit tests added for missing storage, valid hydration, malformed JSON, unsupported versions, invalid fields, duplicate product IDs, writes, clears, storage failures, and empty validated carts.
+- Cart reducer tests now cover hydration replacement behavior.
+- Cart drawer backdrop follow-up completed: the drawer overlay now uses viewport-fixed sizing so backdrop blur covers the full screen behind the panel.
+- Button interaction follow-up completed: the shared Button primitive now uses a pointer cursor for clickable button and link-style actions, including the header cart trigger.
 
 ## In Progress
 
@@ -120,7 +129,7 @@ Prepare for Unit 10: Cart Persistence.
 
 ## Next Up
 
-- Review and implement Unit 10: Cart Persistence.
+- Create and review Unit 11: Loading & Error States.
 
 ## Open Questions
 
@@ -178,6 +187,10 @@ Prepare for Unit 10: Cart Persistence.
 - Unit 09 keeps header layout server-first by extracting only cart interactivity into `CartHeaderAction`.
 - Unit 09 preserves product detail navigation by separating product card links from add-to-cart buttons.
 - Unit 10 will persist cart state with a versioned `localStorage` payload and validated client-side hydration.
+- Unit 10 stores only serializable cart state under `cartflow.cart.v1`; selector-derived totals and UI state are intentionally not persisted.
+- Unit 10 clears persisted storage when the cart is empty, so clear-cart persists as an absent storage key.
+- Unit 10 validation keeps the first valid item when duplicate persisted product IDs are encountered.
+- Unit 10 treats malformed, unsupported, unavailable, or invalid persisted data as recoverable and never throws during hydration.
 
 ## Session Notes
 
@@ -255,3 +268,9 @@ Prepare for Unit 10: Cart Persistence.
 - Unit 09 add-to-cart feedback follow-up verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
 - Unit 09 header navigation follow-up verification passed: `pnpm type-check` and `pnpm lint`.
 - Unit 10 specification has been created and limits the next implementation to localStorage persistence, hydration, storage validation, storage failure recovery, and tests without checkout, backend storage, or product refetching.
+- Unit 10 implementation followed `context/specs/10-cart-persistence.md` and did not add checkout, payment, order submission, authentication, backend cart storage, cross-device sync, product inventory validation, product data refetching, cart expiration, analytics, loading skeletons, or new dependencies.
+- Unit 10 verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
+- Unit 10 scope check confirmed browser storage access is isolated to `src/features/cart/persistence/cart-storage.ts` and cart hydration does not add product API calls.
+- Manual browser automation was not available in this turn; persistence behavior is covered by storage/reducer tests plus production build verification.
+- Cart drawer backdrop follow-up verification passed: `pnpm type-check` and `pnpm lint`.
+- Button cursor follow-up verification passed: `pnpm type-check` and `pnpm lint`.

@@ -5,6 +5,7 @@ export const CART_ACTION_TYPES = {
   updateItemQuantity: "cart/update-item-quantity",
   removeItem: "cart/remove-item",
   clear: "cart/clear",
+  hydrate: "cart/hydrate",
 } as const;
 
 export interface CartItem {
@@ -49,6 +50,10 @@ export type CartAction =
     }
   | {
       type: typeof CART_ACTION_TYPES.clear;
+    }
+  | {
+      type: typeof CART_ACTION_TYPES.hydrate;
+      payload: CartState;
     };
 
 export type CartDispatch = Dispatch<CartAction>;
@@ -60,6 +65,7 @@ export interface CartContextValue {
   totalQuantity: number;
   subtotal: number;
   isEmpty: boolean;
+  isHydrated: boolean;
   addItem: (item: AddCartItemInput) => void;
   updateItemQuantity: (productId: number, quantity: number) => void;
   removeItem: (productId: number) => void;
