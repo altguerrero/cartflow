@@ -8,7 +8,7 @@ Implementation
 
 ## Current Goal
 
-Prepare for Unit 13: Performance & Final Polish.
+Review and implement Unit 13: Performance & Final Polish.
 
 ## Build Plan
 
@@ -136,6 +136,7 @@ Prepare for Unit 13: Performance & Final Polish.
 - Product catalog URL hook tests added for debounced URL replacement, slow-typing regression coverage, external URL synchronization, category/sort navigation, and clearing filters.
 - Cart provider tests added for persisted hydration, invalid storage clearing, add/update/remove/clear persistence, and prevention of pre-hydration storage overwrite.
 - Testing Library and jsdom dev dependencies added for focused React client hook/context tests.
+- Unit 13 specification created (`context/specs/13-performance-final-polish.md`).
 
 ## In Progress
 
@@ -143,7 +144,7 @@ Prepare for Unit 13: Performance & Final Polish.
 
 ## Next Up
 
-- Review and implement Unit 13: Performance & Final Polish.
+- Implement Unit 13: Performance & Final Polish.
 
 ## Open Questions
 
