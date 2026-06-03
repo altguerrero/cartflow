@@ -122,6 +122,7 @@ Prepare for Unit 11: Loading & Error States.
 - Cart reducer tests now cover hydration replacement behavior.
 - Cart drawer backdrop follow-up completed: the drawer overlay now uses viewport-fixed sizing so backdrop blur covers the full screen behind the panel.
 - Button interaction follow-up completed: the shared Button primitive now uses a pointer cursor for clickable button and link-style actions, including the header cart trigger.
+- Unit 11 specification created (`context/specs/11-loading-error-states.md`).
 
 ## In Progress
 
@@ -129,7 +130,7 @@ Prepare for Unit 11: Loading & Error States.
 
 ## Next Up
 
-- Create and review Unit 11: Loading & Error States.
+- Review and implement Unit 11: Loading & Error States.
 
 ## Open Questions
 
@@ -191,6 +192,7 @@ Prepare for Unit 11: Loading & Error States.
 - Unit 10 clears persisted storage when the cart is empty, so clear-cart persists as an absent storage key.
 - Unit 10 validation keeps the first valid item when duplicate persisted product IDs are encountered.
 - Unit 10 treats malformed, unsupported, unavailable, or invalid persisted data as recoverable and never throws during hydration.
+- Unit 11 will use Next.js App Router `loading.tsx` and `error.tsx` route conventions for loading and unexpected error boundaries while keeping expected product service failures handled explicitly in Server Components.
 
 ## Session Notes
 
@@ -274,3 +276,4 @@ Prepare for Unit 11: Loading & Error States.
 - Manual browser automation was not available in this turn; persistence behavior is covered by storage/reducer tests plus production build verification.
 - Cart drawer backdrop follow-up verification passed: `pnpm type-check` and `pnpm lint`.
 - Button cursor follow-up verification passed: `pnpm type-check` and `pnpm lint`.
+- Unit 11 specification has been created and limits the next implementation to loading skeletons, route error boundaries, friendly expected API failure states, retry actions, and cart hydration loading polish without changing data fetching, cart persistence, or business behavior.
