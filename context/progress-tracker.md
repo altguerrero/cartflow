@@ -8,7 +8,7 @@ Implementation
 
 ## Current Goal
 
-Prepare for Unit 12: Testing.
+Prepare for Unit 13: Performance & Final Polish.
 
 ## Build Plan
 
@@ -23,7 +23,7 @@ Prepare for Unit 12: Testing.
 - [x] Unit 09: Cart UI & Interactions
 - [x] Unit 10: Cart Persistence
 - [x] Unit 11: Loading & Error States
-- [ ] Unit 12: Testing
+- [x] Unit 12: Testing
 - [ ] Unit 13: Performance & Final Polish
 
 ## Completed
@@ -132,6 +132,10 @@ Prepare for Unit 12: Testing.
 - Search input stability bug fixed: catalog URL updates no longer remount the catalog content while users are typing.
 - Search debounce race condition fixed: older debounced URL commits no longer overwrite newer in-progress search input text.
 - Unit 12 specification created (`context/specs/12-testing.md`).
+- Unit 12 completed: automated client behavior coverage added for URL-driven catalog search and cart provider persistence.
+- Product catalog URL hook tests added for debounced URL replacement, slow-typing regression coverage, external URL synchronization, category/sort navigation, and clearing filters.
+- Cart provider tests added for persisted hydration, invalid storage clearing, add/update/remove/clear persistence, and prevention of pre-hydration storage overwrite.
+- Testing Library and jsdom dev dependencies added for focused React client hook/context tests.
 
 ## In Progress
 
@@ -139,7 +143,7 @@ Prepare for Unit 12: Testing.
 
 ## Next Up
 
-- Review and implement Unit 12: Testing.
+- Review and implement Unit 13: Performance & Final Polish.
 
 ## Open Questions
 
@@ -208,6 +212,8 @@ Prepare for Unit 12: Testing.
 - Unit 11 exposes only route-needed product skeletons through the product feature public API.
 - Product catalog URL synchronization preserves a stable mounted search input and uses reducer-managed input state to sync URL changes without interrupting typing.
 - Internally generated search URL commits are tracked separately from external URL changes so back/forward navigation can still sync the input while slow typing remains uninterrupted.
+- Unit 12 keeps Vitest's default test environment as `node` and opts individual React client tests into `jsdom` with file-level environment comments.
+- Unit 12 uses Testing Library only for user-observable hook/context behavior that cannot be covered by pure utility tests.
 
 ## Session Notes
 
@@ -306,3 +312,8 @@ Prepare for Unit 12: Testing.
 - Search debounce race follow-up tracks internally scheduled search URL updates and commits them without replacing the current input value, preventing slow typing such as `mens` from being truncated to `men` or `me`.
 - Search debounce race follow-up verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
 - Unit 12 specification has been created and limits the next implementation to automated test coverage for critical product URL behavior, search debounce regressions, cart persistence/hydration, and cart interactions without adding runtime features or Unit 13 polish.
+- Unit 12 implementation followed `context/specs/12-testing.md` and did not add runtime features, checkout, payment, authentication, backend storage, analytics, recommendations, animations, broad visual redesigns, performance polish, E2E tooling, coverage thresholds, or network-dependent tests.
+- Unit 12 dev dependencies added: `@testing-library/react`, `@testing-library/user-event`, and `jsdom` for focused React hook/context tests. Pure utility tests remain in the default node environment.
+- Unit 12 test count increased from 70 to 78 across 12 passing test files.
+- Unit 12 verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
+- Unit 12 dependency install required using the existing pnpm store path because the local `node_modules` was linked to `/Users/computer/Library/pnpm/store/v11`; the temporary workspace `.pnpm-store` created by the first failed install attempt was removed.
