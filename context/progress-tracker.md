@@ -4,17 +4,17 @@ Update this file after every meaningful implementation change.
 
 ## Current Phase
 
-Pre-implementation planning
+Implementation
 
 ## Current Goal
 
-Confirm the Unit 03 specification before starting Product Catalog Data Layer implementation.
+Prepare for Unit 04: Product Grid UI.
 
 ## Build Plan
 
 - [x] Unit 01: Project Foundation
 - [x] Unit 02: Design System & Layout Shell
-- [ ] Unit 03: Product Catalog Data Layer
+- [x] Unit 03: Product Catalog Data Layer
 - [ ] Unit 04: Product Grid UI
 - [ ] Unit 05: Filtering & Sorting System
 - [ ] Unit 06: URL State Synchronization
@@ -62,6 +62,9 @@ Confirm the Unit 03 specification before starting Product Catalog Data Layer imp
 - Unit 02 globals follow-up completed: explicit utilities added for accent soft background and focus ring offset tokens.
 - Unit 02 globals cleanup completed: light theme tokens, compatibility aliases, fonts, and radius values consolidated into a single `:root` block.
 - Unit 03 specification created (`context/specs/03-product-catalog-data-layer.md`).
+- Unit 03 completed: product domain types, Fake Store API services, transformation utilities, service error model, and data-layer tests implemented.
+- Product feature public exports added through `src/features/products/index.ts`.
+- Vitest test runner added with minimal project configuration for data-layer tests.
 
 ## In Progress
 
@@ -69,7 +72,7 @@ Confirm the Unit 03 specification before starting Product Catalog Data Layer imp
 
 ## Next Up
 
-- Start Unit 03 implementation only after confirming the approved scope in `context/specs/03-product-catalog-data-layer.md`.
+- Create or review the Unit 04 specification before implementing Product Grid UI.
 
 ## Open Questions
 
@@ -101,6 +104,10 @@ Confirm the Unit 03 specification before starting Product Catalog Data Layer imp
 - Base UI primitives avoid unresolved shadcn token aliases and use CartFlow semantic utilities for foreground, muted text, surfaces, borders, and focus states.
 - Tailwind token aliases used by layout focus and accent states are exposed through explicit utilities in `globals.css`.
 - Global light-mode CSS variables are defined in one `:root` block; `.dark` only overrides theme color tokens.
+- Unit 03 product API access is centralized in `src/features/products/services/products.service.ts`.
+- Product catalog data uses native `fetch` with Next.js-compatible time-based revalidation.
+- Fake Store API responses are validated and transformed before being exposed as product domain objects.
+- Product data-layer validation uses Vitest without React Testing Library because this unit introduced no React hooks or components.
 
 ## Session Notes
 
@@ -129,6 +136,8 @@ Confirm the Unit 03 specification before starting Product Catalog Data Layer imp
 - Unit 02 globals follow-up verification passed: `pnpm type-check` and `pnpm lint`.
 - Unit 02 globals cleanup verification passed: `pnpm type-check` and `pnpm lint`.
 - Local browser screenshot verification was not completed because the available Next dev server process was not reachable from this shell; existing dev log hydration warning was caused by a browser extension attribute (`cz-shortcut-listen`).
-- Unit 03 has not started implementation yet.
-- Before implementation begins, review and confirm `context/specs/03-product-catalog-data-layer.md`.
-- Once approved, Unit 03 implementation should remain limited to product types, Fake Store API services, transformation utilities, service error handling, and data-layer tests if needed.
+- Unit 03 implementation followed `context/specs/03-product-catalog-data-layer.md` and did not add product UI, filtering, sorting, URL synchronization, product detail routes, or cart behavior.
+- Unit 03 dependency added: `vitest` for pure data-layer tests.
+- Unit 03 verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
+- Production build required network access for `next/font/google` to fetch Geist fonts.
+- Unit 04 should not begin implementation until its dedicated specification is created or reviewed.
