@@ -8,7 +8,7 @@ Implementation
 
 ## Current Goal
 
-Prepare for Unit 08: Cart State Management.
+Implement Unit 08: Cart State Management.
 
 ## Build Plan
 
@@ -94,6 +94,7 @@ Prepare for Unit 08: Cart State Management.
 - Product navigation utilities added for detail hrefs, catalog return hrefs, catalog query extraction, deterministic query ordering, and product ID parsing.
 - Product navigation unit tests added for detail URLs, catalog return URLs, query preservation, unknown query omission, immutability, ordering, and invalid ID handling.
 - Unit 07 not-found follow-up completed: product detail 404s now use a scoped not-found route with CartFlow metadata and UI instead of the framework default 404 title.
+- Unit 08 specification created (`context/specs/08-cart-state-management.md`).
 
 ## In Progress
 
@@ -101,7 +102,7 @@ Prepare for Unit 08: Cart State Management.
 
 ## Next Up
 
-- Create or review the Unit 08 specification before implementing Cart State Management.
+- Implement Unit 08: Cart State Management.
 
 ## Open Questions
 
@@ -213,3 +214,4 @@ Prepare for Unit 08: Cart State Management.
 - Production build required escalated network access for Google Fonts.
 - Local server verification confirmed `/products/1?q=gold&category=jewelery&sort=rating-desc` returns HTTP 200, `/products/not-a-number` returns HTTP 404, and the product detail back link preserves only catalog query parameters.
 - Unit 07 not-found metadata follow-up verified with `pnpm test`, `pnpm type-check`, `pnpm lint`, and local HTTP/HTML checks for `/products/2as`.
+- Unit 08 specification has been created and limits the next implementation to cart state architecture, reducer logic, actions, selectors, provider integration, and tests without cart UI or persistence.
