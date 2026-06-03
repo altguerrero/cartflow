@@ -41,7 +41,7 @@ export function ProductCatalogControls({
 }: ProductCatalogControlsProps) {
   return (
     <section
-      className="border-default bg-elevated rounded-2xl border p-4 shadow-sm"
+      className="border-default bg-elevated motion-safe:animate-in motion-safe:fade-in-0 rounded-2xl border p-4 shadow-sm motion-safe:duration-200"
       aria-label="Product catalog controls"
     >
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_220px_220px_auto] lg:items-end">
@@ -65,7 +65,7 @@ export function ProductCatalogControls({
                 onSearchChange(event.target.value);
               }}
               placeholder="Search by product, category, or description"
-              className="border-default bg-base text-primary placeholder:text-muted h-10 w-full rounded-xl border px-9 text-sm transition outline-none focus:border-(--accent-primary) focus:ring-[3px] focus:ring-(--accent-primary-soft)"
+              className="border-default bg-base text-primary placeholder:text-muted hover:border-subtle h-10 w-full rounded-xl border px-9 text-sm transition outline-none focus:border-(--accent-primary) focus:ring-[3px] focus:ring-(--accent-primary-soft)"
             />
           </div>
         </div>
@@ -84,7 +84,7 @@ export function ProductCatalogControls({
               onChange={(event) => {
                 onCategoryChange(event.target.value);
               }}
-              className="border-default bg-base text-primary h-10 w-full appearance-none rounded-xl border py-0 pr-10 pl-3 text-sm transition outline-none focus:border-(--accent-primary) focus:ring-[3px] focus:ring-(--accent-primary-soft)"
+              className="border-default bg-base text-primary hover:border-subtle h-10 w-full appearance-none rounded-xl border py-0 pr-10 pl-3 text-sm transition outline-none focus:border-(--accent-primary) focus:ring-[3px] focus:ring-(--accent-primary-soft)"
             >
               <option value="all">All categories</option>
               {categories.map((productCategory) => (
@@ -118,7 +118,7 @@ export function ProductCatalogControls({
                   onSortChange(nextSort);
                 }
               }}
-              className="border-default bg-base text-primary h-10 w-full appearance-none rounded-xl border py-0 pr-10 pl-3 text-sm transition outline-none focus:border-(--accent-primary) focus:ring-[3px] focus:ring-(--accent-primary-soft)"
+              className="border-default bg-base text-primary hover:border-subtle h-10 w-full appearance-none rounded-xl border py-0 pr-10 pl-3 text-sm transition outline-none focus:border-(--accent-primary) focus:ring-[3px] focus:ring-(--accent-primary-soft)"
             >
               {PRODUCT_SORT_OPTIONS.map((sortOption) => (
                 <option key={sortOption.value} value={sortOption.value}>

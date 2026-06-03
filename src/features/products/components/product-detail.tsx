@@ -21,11 +21,14 @@ export function ProductDetail({
   const categoryLabel = formatProductCategoryLabel(product.category);
 
   return (
-    <article className="space-y-8" aria-labelledby="product-detail-title">
+    <article
+      className="motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-2 space-y-8 motion-safe:duration-200"
+      aria-labelledby="product-detail-title"
+    >
       <ProductDetailBackLink catalogQueryString={catalogQueryString} />
 
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(360px,0.95fr)] lg:items-start">
-        <Card className="bg-surface p-0">
+        <Card className="bg-surface p-0 transition-shadow duration-200 motion-safe:hover:shadow-md">
           <div className="relative aspect-square min-h-72 overflow-hidden sm:min-h-96 lg:min-h-[520px]">
             <Image
               src={product.image}
@@ -33,7 +36,7 @@ export function ProductDetail({
               fill
               priority
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-contain p-8 sm:p-12"
+              className="object-contain p-8 transition-transform duration-200 ease-out motion-safe:hover:scale-[1.02] sm:p-12"
             />
           </div>
         </Card>

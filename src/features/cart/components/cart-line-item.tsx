@@ -19,7 +19,7 @@ export function CartLineItem({ item }: CartLineItemProps) {
   const { removeItem } = useCart();
 
   return (
-    <li className="border-default bg-elevated grid gap-4 rounded-2xl border p-4 shadow-sm sm:grid-cols-[112px_minmax(0,1fr)_auto] sm:items-center">
+    <li className="border-default bg-elevated motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-2 grid gap-4 rounded-2xl border p-4 shadow-sm transition-[border-color,box-shadow,transform] duration-200 ease-out motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-md sm:grid-cols-[112px_minmax(0,1fr)_auto] sm:items-center">
       <div className="bg-surface relative aspect-square overflow-hidden rounded-xl sm:size-28">
         <Image
           src={item.image}

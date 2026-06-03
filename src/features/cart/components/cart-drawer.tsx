@@ -64,10 +64,6 @@ export function CartDrawer({ isOpen, onClose, triggerRef }: CartDrawerProps) {
     };
   }, [isOpen, onClose, triggerRef]);
 
-  if (!isOpen) {
-    return null;
-  }
-
   function handlePanelKeyDown(event: KeyboardEvent<HTMLDivElement>) {
     if (event.key !== "Tab" || !panelRef.current) {
       return;
@@ -97,10 +93,18 @@ export function CartDrawer({ isOpen, onClose, triggerRef }: CartDrawerProps) {
   }
 
   return (
-    <div className="fixed inset-0 z-[60]" role="presentation">
+    <div
+      className={`fixed inset-0 z-[60] ${
+        isOpen ? "pointer-events-auto" : "pointer-events-none"
+      }`}
+      role="presentation"
+      aria-hidden={!isOpen}
+    >
       <button
         type="button"
-        className="fixed inset-0 h-dvh w-dvw bg-black/35 backdrop-blur-[2px]"
+        className={`fixed inset-0 h-dvh w-dvw bg-black/35 backdrop-blur-[2px] transition-opacity duration-[250ms] motion-reduce:transition-none ${
+          isOpen ? "opacity-100" : "opacity-0"
+        }`}
         aria-label="Close cart drawer"
         onClick={onClose}
       />
@@ -110,7 +114,9 @@ export function CartDrawer({ isOpen, onClose, triggerRef }: CartDrawerProps) {
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="bg-base border-default fixed top-0 right-0 grid h-dvh w-full max-w-md grid-rows-[auto_minmax(0,1fr)_auto] border-l shadow-lg outline-none"
+        className={`bg-base border-default fixed top-0 right-0 grid h-dvh w-full max-w-md grid-rows-[auto_minmax(0,1fr)_auto] border-l shadow-lg transition-[transform,opacity] duration-[250ms] ease-out outline-none motion-reduce:transition-none ${
+          isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+        }`}
         onKeyDown={handlePanelKeyDown}
       >
         <div className="border-default flex items-center justify-between gap-4 border-b px-5 py-4">

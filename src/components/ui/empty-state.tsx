@@ -18,7 +18,7 @@ export function EmptyState({
   return (
     <section
       className={cn(
-        "border-default bg-elevated flex flex-col items-center rounded-2xl border px-6 py-10 text-center shadow-sm",
+        "border-default bg-elevated motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-1 flex flex-col items-center rounded-2xl border px-6 py-10 text-center shadow-sm motion-safe:duration-200",
         className,
       )}
     >

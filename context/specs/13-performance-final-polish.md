@@ -240,13 +240,16 @@ Requirements:
 
 ### 6. Deployment Readiness
 
-Review deployment setup and documentation for Vercel.
+Review deployment setup and documentation for Vercel and Docker-based local runtime.
 
 Targets:
 
 ```text
 README.md
 .env.example
+Dockerfile
+.dockerignore
+next.config.ts
 context/progress-tracker.md
 ```
 
@@ -256,6 +259,8 @@ Responsibilities:
 - Confirm local setup and Vercel setup instructions are accurate.
 - Explain that Vercel Production and Preview environments need the required variable configured.
 - Note that deployments should be redeployed after environment variables change.
+- Provide a production-oriented Dockerfile so reviewers can run CartFlow without installing project dependencies locally.
+- Keep the Docker runtime aligned with the Next.js production build output.
 - Keep deployment guidance concise and project-specific.
 
 Required environment value:
@@ -270,6 +275,8 @@ Requirements:
 - Do not change the external data source.
 - Do not add secrets for public Fake Store API usage.
 - Do not mark public API configuration as sensitive unless there is a project-specific reason.
+- Do not introduce Docker Compose unless multiple services become necessary.
+- Do not require checkout, backend storage, or database services for the Docker runtime.
 
 ---
 
@@ -286,6 +293,7 @@ Responsibilities:
 - Document architecture at a high level.
 - Document testing and verification commands.
 - Document deployment notes for Vercel.
+- Document Docker build and run commands.
 
 Requirements:
 

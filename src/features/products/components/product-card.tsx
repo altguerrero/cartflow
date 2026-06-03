@@ -13,14 +13,19 @@ import { buildProductDetailHref } from "@/features/products/utils/product-naviga
 interface ProductCardProps {
   catalogQueryString?: string;
   product: Product;
+  priority?: boolean;
 }
 
-export function ProductCard({ catalogQueryString, product }: ProductCardProps) {
+export function ProductCard({
+  catalogQueryString,
+  priority = false,
+  product,
+}: ProductCardProps) {
   const categoryLabel = formatProductCategoryLabel(product.category);
   const detailHref = buildProductDetailHref(product.id, catalogQueryString);
 
   return (
-    <Card className="group/card h-full gap-0 pt-0 pb-4 transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:shadow-md">
+    <Card className="group/card h-full gap-0 pt-0 pb-4 transition-[box-shadow,transform] duration-200 ease-out motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-md">
       <Link
         href={detailHref}
         className="block rounded-t-2xl outline-none focus-visible:ring-[3px] focus-visible:ring-(--accent-primary-soft)"
@@ -31,8 +36,9 @@ export function ProductCard({ catalogQueryString, product }: ProductCardProps) {
             src={product.image}
             alt={product.title}
             fill
+            priority={priority}
             sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className="object-contain px-6 pt-3 pb-5 transition-transform duration-200 group-hover/card:scale-105 sm:px-7 sm:pt-4 sm:pb-6"
+            className="object-contain px-6 pt-3 pb-5 transition-transform duration-200 ease-out motion-safe:group-hover/card:scale-105 sm:px-7 sm:pt-4 sm:pb-6"
           />
         </span>
       </Link>

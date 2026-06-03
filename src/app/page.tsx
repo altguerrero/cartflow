@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 
 import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/ui/container";
@@ -12,6 +13,12 @@ import {
   ProductServiceError,
   type Product,
 } from "@/features/products";
+
+export const metadata: Metadata = {
+  title: "Product Catalog",
+  description:
+    "Browse CartFlow products with searchable categories, sorting, clear pricing, and ratings.",
+};
 
 export default async function Home() {
   const catalog = await loadCatalogProducts();

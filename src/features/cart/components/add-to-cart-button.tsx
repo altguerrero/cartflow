@@ -53,7 +53,7 @@ export function AddToCartButton({
       type="button"
       size={size}
       variant={wasRecentlyAdded ? "secondary" : "default"}
-      className={cn("gap-2", className)}
+      className={cn("gap-2 transition-[background-color,transform]", className)}
       aria-label={
         wasRecentlyAdded
           ? `${product.title} added to cart`
@@ -63,9 +63,15 @@ export function AddToCartButton({
       onClick={handleAddToCart}
     >
       {wasRecentlyAdded ? (
-        <Check aria-hidden="true" />
+        <Check
+          aria-hidden="true"
+          className="motion-safe:animate-in motion-safe:fade-in-0 motion-safe:zoom-in-95 motion-safe:duration-150"
+        />
       ) : (
-        <ShoppingCart aria-hidden="true" />
+        <ShoppingCart
+          aria-hidden="true"
+          className="motion-safe:transition-transform motion-safe:duration-150 motion-safe:group-hover/button:-translate-y-0.5"
+        />
       )}
       {wasRecentlyAdded ? "Added" : "Add to cart"}
     </Button>

@@ -19,7 +19,7 @@ export function CartDrawerItem({ item }: CartDrawerItemProps) {
   const { removeItem } = useCart();
 
   return (
-    <li className="border-default bg-elevated flex gap-3 rounded-2xl border p-3 shadow-sm">
+    <li className="border-default bg-elevated motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-right-1 flex gap-3 rounded-2xl border p-3 shadow-sm transition-[border-color,box-shadow,transform] duration-200 ease-out motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-md">
       <div className="bg-surface relative size-16 shrink-0 overflow-hidden rounded-xl">
         <Image
           src={item.image}

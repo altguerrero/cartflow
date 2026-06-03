@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/container";
 import { EmptyState } from "@/components/ui/empty-state";
 
 export const metadata: Metadata = {
-  title: "Page not found | CartFlow",
+  title: "Page not found",
   description: "The requested CartFlow page could not be found.",
 };
 

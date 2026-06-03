@@ -36,7 +36,17 @@ export function ThemeToggle() {
       aria-label="Toggle color theme"
       onClick={() => setTheme(isDark ? "light" : "dark")}
     >
-      {isDark ? <Sun aria-hidden="true" /> : <Moon aria-hidden="true" />}
+      {isDark ? (
+        <Sun
+          aria-hidden="true"
+          className="motion-safe:transition-transform motion-safe:duration-150 motion-safe:group-hover/button:rotate-12"
+        />
+      ) : (
+        <Moon
+          aria-hidden="true"
+          className="motion-safe:transition-transform motion-safe:duration-150 motion-safe:group-hover/button:-rotate-12"
+        />
+      )}
     </Button>
   );
 }

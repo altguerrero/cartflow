@@ -8,7 +8,7 @@ Implementation
 
 ## Current Goal
 
-Review and implement Unit 13: Performance & Final Polish.
+Unit 13 complete; prepare final delivery review and commit.
 
 ## Build Plan
 
@@ -24,7 +24,7 @@ Review and implement Unit 13: Performance & Final Polish.
 - [x] Unit 10: Cart Persistence
 - [x] Unit 11: Loading & Error States
 - [x] Unit 12: Testing
-- [ ] Unit 13: Performance & Final Polish
+- [x] Unit 13: Performance & Final Polish
 
 ## Completed
 
@@ -137,6 +137,14 @@ Review and implement Unit 13: Performance & Final Polish.
 - Cart provider tests added for persisted hydration, invalid storage clearing, add/update/remove/clear persistence, and prevention of pre-hydration storage overwrite.
 - Testing Library and jsdom dev dependencies added for focused React client hook/context tests.
 - Unit 13 specification created (`context/specs/13-performance-final-polish.md`).
+- Unit 13 completed: final motion polish, metadata review, deployment documentation, README completion, product image priority review, and cart drawer interaction hardening implemented.
+- Subtle motion polish added to product cards, product grid entries, catalog controls, product detail surface, cart line items, cart drawer items, empty states, error states, header logo, theme toggle, and add-to-cart feedback.
+- Cart drawer open/close behavior now uses transform and opacity transitions while keeping Escape close, backdrop close, focus restoration, and trigger accessibility intact.
+- Product catalog image performance reviewed; the first visible product row now uses `next/image` priority hints while preserving responsive `sizes`.
+- Application metadata completed with a CartFlow title template, catalog metadata, cart metadata, not-found metadata, and product-specific dynamic metadata.
+- README completed with product features, local setup, scripts, architecture, verification commands, Vercel environment setup, and explicit out-of-scope notes.
+- Cart header drawer trigger test added to protect open/close behavior after the Unit 13 motion changes.
+- Docker runtime support added with a production multi-stage `Dockerfile`, `.dockerignore`, Next.js standalone output, and README build/run commands.
 
 ## In Progress
 
@@ -144,7 +152,7 @@ Review and implement Unit 13: Performance & Final Polish.
 
 ## Next Up
 
-- Implement Unit 13: Performance & Final Polish.
+- Final delivery review and commit.
 
 ## Open Questions
 
@@ -215,6 +223,10 @@ Review and implement Unit 13: Performance & Final Polish.
 - Internally generated search URL commits are tracked separately from external URL changes so back/forward navigation can still sync the input while slow typing remains uninterrupted.
 - Unit 12 keeps Vitest's default test environment as `node` and opts individual React client tests into `jsdom` with file-level environment comments.
 - Unit 12 uses Testing Library only for user-observable hook/context behavior that cannot be covered by pure utility tests.
+- Unit 13 uses Tailwind and existing CSS transitions for motion polish instead of adding `framer-motion`, keeping bundle surface smaller because the required polish is limited to opacity, transform, and shadow feedback.
+- Unit 13 keeps product fetching server-first and does not move product API calls into client components.
+- Unit 13 keeps URL-driven catalog state, cart reducer behavior, and `localStorage` persistence format unchanged.
+- Docker support uses Next.js `output: "standalone"` so the runtime image can run `server.js` without shipping the full development dependency tree.
 
 ## Session Notes
 
@@ -318,3 +330,14 @@ Review and implement Unit 13: Performance & Final Polish.
 - Unit 12 test count increased from 70 to 78 across 12 passing test files.
 - Unit 12 verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
 - Unit 12 dependency install required using the existing pnpm store path because the local `node_modules` was linked to `/Users/computer/Library/pnpm/store/v11`; the temporary workspace `.pnpm-store` created by the first failed install attempt was removed.
+- Unit 13 implementation followed `context/specs/13-performance-final-polish.md` and did not add checkout, payment, authentication, backend storage, analytics, recommendations, inventory validation, wishlists, admin features, new data sources, broad visual redesigns, or new runtime dependencies.
+- Unit 13 verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
+- Unit 13 test count increased from 78 to 79 across 13 passing test files with focused coverage for the cart header drawer trigger.
+- Unit 13 browser render verification confirmed the catalog loads at `http://127.0.0.1:3000/` with live products and no browser console errors or warnings.
+- Unit 13 route verification confirmed product detail, cart, and invalid product routes render expected content through automated route checks and browser DOM inspection.
+- Unit 13 browser interaction verification was limited because the in-app browser session rendered pages but did not reliably dispatch React header interactions; the affected cart drawer trigger behavior is covered by Testing Library instead.
+- Unit 13 responsive behavior was reviewed through mobile-first Tailwind classes, stable drawer width constraints, product grid breakpoints, build output, and available 1280px browser rendering; the in-app browser did not expose viewport resizing for the required 390px, 768px, 1024px, and 1440px widths in this session.
+- Unit 13 added no new dependencies.
+- Docker follow-up added no dependencies and keeps `NEXT_PUBLIC_API_URL=https://fakestoreapi.com` as public build/runtime configuration.
+- Docker follow-up verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`; `.next/standalone/server.js` was generated successfully.
+- Docker image build was not executed because the local Docker daemon was not running (`/Users/computer/.docker/run/docker.sock` was unavailable).

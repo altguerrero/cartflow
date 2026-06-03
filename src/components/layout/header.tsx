@@ -18,10 +18,10 @@ export function Header() {
       <Container className="flex h-16 items-center justify-between gap-4">
         <Link
           href="/"
-          className="focus-visible:ring-ring focus-visible:ring-offset-background flex items-center gap-3 rounded-xl outline-none focus-visible:ring-3 focus-visible:ring-offset-2"
+          className="focus-visible:ring-ring focus-visible:ring-offset-background group/logo flex items-center gap-3 rounded-xl outline-none focus-visible:ring-3 focus-visible:ring-offset-2"
           aria-label="CartFlow home"
         >
-          <span className="bg-accent-primary-soft text-brand flex size-9 items-center justify-center rounded-xl text-sm font-semibold">
+          <span className="bg-accent-primary-soft text-brand flex size-9 items-center justify-center rounded-xl text-sm font-semibold motion-safe:transition-transform motion-safe:duration-150 motion-safe:group-hover/logo:-translate-y-0.5">
             CF
           </span>
           <span className="flex flex-col">

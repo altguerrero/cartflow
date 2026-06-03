@@ -18,8 +18,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CartFlow",
-  description: "Modern e-commerce experience built with Next.js.",
+  applicationName: "CartFlow",
+  title: {
+    default: "CartFlow | Modern Storefront",
+    template: "%s | CartFlow",
+  },
+  description:
+    "Browse products, compare ratings, and manage a persistent shopping cart in CartFlow.",
+  keywords: [
+    "CartFlow",
+    "e-commerce",
+    "product catalog",
+    "shopping cart",
+    "Next.js storefront",
+  ],
 };
 
 interface RootLayoutProps {

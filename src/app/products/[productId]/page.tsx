@@ -31,7 +31,8 @@ export async function generateMetadata({
 
   if (!productId) {
     return {
-      title: "Product not found | CartFlow",
+      title: "Product not found",
+      description: "The requested CartFlow product could not be found.",
     };
   }
 
@@ -39,12 +40,14 @@ export async function generateMetadata({
     const product = await getProductById(productId);
 
     return {
-      title: `${product.title} | CartFlow`,
+      title: product.title,
       description: product.description,
     };
   } catch {
     return {
-      title: "Product | CartFlow",
+      title: "Product",
+      description:
+        "Review product details, pricing, ratings, and cart options in CartFlow.",
     };
   }
 }

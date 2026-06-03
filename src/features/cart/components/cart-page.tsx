@@ -17,7 +17,7 @@ export function CartPage() {
   return (
     <Container className="py-10 sm:py-14 lg:py-16">
       <section className="space-y-8" aria-labelledby="cart-page-title">
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+        <div className="motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-2 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl space-y-3">
             <div className="bg-accent-primary-soft text-brand flex size-10 items-center justify-center rounded-xl">
               <ShoppingBag aria-hidden="true" className="size-5" />
