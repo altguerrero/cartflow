@@ -4,15 +4,15 @@ Update this file after every meaningful implementation change.
 
 ## Current Phase
 
-Planning & Specification
+Implementation
 
 ## Current Goal
 
-Prepare implementation specifications and establish the development roadmap before coding begins.
+Prepare for Unit 02: Products Data Layer.
 
 ## Build Plan
 
-- [ ] Unit 01: Project Foundation
+- [x] Unit 01: Project Foundation
 - [ ] Unit 02: Products Data Layer
 - [ ] Unit 03: Product Catalog Layout
 - [ ] Unit 04: Category Filters
@@ -42,6 +42,17 @@ Prepare implementation specifications and establish the development roadmap befo
 - Progress tracker initialized.
 - Build plan created (`context/specs/00-build-plan.md`).
 - Unit 01 specification created (`context/specs/01-project-foundation.md`).
+- Unit 01 completed: Next.js App Router foundation moved under `src/app`.
+- Initial feature-oriented source structure created.
+- Temporary CartFlow health-check interface created.
+- Global layout, metadata, font configuration, provider placeholder, and application header created.
+- Tailwind semantic theme tokens configured from UI context.
+- TypeScript `@/*` path alias configured for `src`.
+- Prettier and Tailwind class sorting plugin installed and configured.
+- Environment example file created.
+- README updated for project setup, scripts, structure, and stack.
+- Unit 01 dark-mode token mapping corrected with explicit semantic Tailwind utilities.
+- TypeScript path alias configuration updated to avoid deprecated `baseUrl`.
 
 ## In Progress
 
@@ -49,7 +60,7 @@ Prepare implementation specifications and establish the development roadmap befo
 
 ## Next Up
 
-- Implement Unit 01: Project Foundation.
+- Implement Unit 02: Products Data Layer.
 
 ## Open Questions
 
@@ -69,6 +80,11 @@ Prepare implementation specifications and establish the development roadmap befo
 - Feature-oriented folder structure.
 - Application branding: CartFlow.
 - Development process: Spec-driven development with unit-based implementation.
+- Source root: `src/`.
+- Path alias: `@/*` resolves to `src/*`.
+- Path aliases use relative `paths` entries without `baseUrl`.
+- Unit 01 introduces only foundation scaffolding and no business functionality.
+- Tailwind semantic utilities map to documented UI tokens through explicit `@utility` definitions.
 
 ## Session Notes
 
@@ -81,4 +97,11 @@ Prepare implementation specifications and establish the development roadmap befo
 - Browser back navigation must preserve filters, sorting, and search state through URL parameters.
 - Cart functionality must work from both product listing and product detail pages.
 - Update this file whenever a unit is completed or a significant architectural decision is made.
-- The next implementation session should start with Unit 01: Project Foundation.
+- Unit 01 verification passed: `pnpm lint`, `pnpm type-check`, `pnpm build`, and `pnpm dev`.
+- Production build required network access for `next/font/google` to fetch Geist fonts.
+- Dev server started on port 3001 because port 3000 was already in use.
+- Browser validation confirmed the CartFlow page content, no console errors, and no mobile horizontal overflow at 390px width.
+- Dark-mode follow-up fixed semantic utility definitions so `bg-base`, `text-primary`, `text-secondary`, `text-muted`, `text-brand`, `border-default`, and related utilities render correctly.
+- Dark-mode browser validation confirmed readable text, expected dark background, expected card surface, and no console errors.
+- TypeScript configuration follow-up removed deprecated `baseUrl`; `pnpm type-check` and `pnpm lint` passed afterward.
+- The next implementation session should start with Unit 02: Products Data Layer.
