@@ -8,7 +8,7 @@ Implementation
 
 ## Current Goal
 
-Prepare for Unit 11: Loading & Error States.
+Prepare for Unit 12: Testing.
 
 ## Build Plan
 
@@ -22,7 +22,7 @@ Prepare for Unit 11: Loading & Error States.
 - [x] Unit 08: Cart State Management
 - [x] Unit 09: Cart UI & Interactions
 - [x] Unit 10: Cart Persistence
-- [ ] Unit 11: Loading & Error States
+- [x] Unit 11: Loading & Error States
 - [ ] Unit 12: Testing
 - [ ] Unit 13: Performance & Final Polish
 
@@ -123,6 +123,14 @@ Prepare for Unit 11: Loading & Error States.
 - Cart drawer backdrop follow-up completed: the drawer overlay now uses viewport-fixed sizing so backdrop blur covers the full screen behind the panel.
 - Button interaction follow-up completed: the shared Button primitive now uses a pointer cursor for clickable button and link-style actions, including the header cart trigger.
 - Unit 11 specification created (`context/specs/11-loading-error-states.md`).
+- Unit 11 completed: route-level loading states and unexpected error boundaries added for the catalog/root segment and product detail segment.
+- Product-scoped catalog, grid, card, and detail skeleton components added using existing CartFlow Skeleton and layout primitives.
+- Reusable `ErrorState` primitive added for branded recovery states with primary and secondary actions.
+- Expected product service failures now render friendly catalog/detail recovery states with route refresh actions instead of generic empty states.
+- Global application not-found page added for consistent unknown-route handling while preserving the product detail not-found page.
+- Cart drawer and cart page hydration loading states now use product-shaped skeleton surfaces instead of minimal text/empty-state messaging.
+- Search input stability bug fixed: catalog URL updates no longer remount the catalog content while users are typing.
+- Search debounce race condition fixed: older debounced URL commits no longer overwrite newer in-progress search input text.
 
 ## In Progress
 
@@ -130,7 +138,7 @@ Prepare for Unit 11: Loading & Error States.
 
 ## Next Up
 
-- Review and implement Unit 11: Loading & Error States.
+- Review and implement Unit 12: Testing.
 
 ## Open Questions
 
@@ -193,6 +201,12 @@ Prepare for Unit 11: Loading & Error States.
 - Unit 10 validation keeps the first valid item when duplicate persisted product IDs are encountered.
 - Unit 10 treats malformed, unsupported, unavailable, or invalid persisted data as recoverable and never throws during hydration.
 - Unit 11 will use Next.js App Router `loading.tsx` and `error.tsx` route conventions for loading and unexpected error boundaries while keeping expected product service failures handled explicitly in Server Components.
+- Unit 11 keeps `loading.tsx` files as Server Components and `error.tsx` files as Client Components, following current Next.js App Router conventions.
+- Unit 11 keeps expected `ProductServiceError` failures handled explicitly in route Server Components and uses a client route refresh button only for recovery, without duplicating product fetching on the client.
+- Unit 11 keeps cart reducer, persistence format, hydration flow, and storage adapter behavior unchanged; only hydration presentation changed.
+- Unit 11 exposes only route-needed product skeletons through the product feature public API.
+- Product catalog URL synchronization preserves a stable mounted search input and uses reducer-managed input state to sync URL changes without interrupting typing.
+- Internally generated search URL commits are tracked separately from external URL changes so back/forward navigation can still sync the input while slow typing remains uninterrupted.
 
 ## Session Notes
 
@@ -277,3 +291,16 @@ Prepare for Unit 11: Loading & Error States.
 - Cart drawer backdrop follow-up verification passed: `pnpm type-check` and `pnpm lint`.
 - Button cursor follow-up verification passed: `pnpm type-check` and `pnpm lint`.
 - Unit 11 specification has been created and limits the next implementation to loading skeletons, route error boundaries, friendly expected API failure states, retry actions, and cart hydration loading polish without changing data fetching, cart persistence, or business behavior.
+- Unit 11 implementation followed `context/specs/11-loading-error-states.md` and did not add checkout, payment, authentication, backend storage, analytics, recommendations, product inventory validation, new product fetching patterns, or new dependencies.
+- Current Next.js App Router documentation was checked for `loading.tsx` and `error.tsx`: `loading` remains a Server Component by default and automatically wraps route segments in Suspense; `error` boundaries must be Client Components and use `reset()` for retry recovery.
+- Unit 11 verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
+- Unit 11 browser verification confirmed the catalog, cart page, and product not-found route render successfully through the in-app browser, with no horizontal overflow in the available desktop viewport.
+- Unit 11 browser logs showed no application console errors; only normal React DevTools and HMR development messages were present.
+- Unit 11 responsive behavior was reviewed through the existing mobile-first grid and breakpoint classes because the in-app browser wrapper did not expose viewport resizing in this session.
+- Dev server route checks returned HTTP 200 for `/`, `/cart`, and `/products/not-a-number`; the product invalid-ID route rendered the scoped product not-found UI as expected.
+- Unit 11 added no new dependencies.
+- Search stability follow-up removed the URL query string `key` from `ProductCatalogContent`, preventing input focus loss after debounced URL replacement.
+- Search stability follow-up verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
+- Browser interaction verification for the search follow-up could not be completed because the existing Next dev server PID reported by Next was not reachable from this shell or the in-app browser; static verification and production build passed.
+- Search debounce race follow-up tracks internally scheduled search URL updates and commits them without replacing the current input value, preventing slow typing such as `mens` from being truncated to `men` or `me`.
+- Search debounce race follow-up verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.

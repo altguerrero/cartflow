@@ -1,5 +1,7 @@
 export { ProductCatalog } from "@/features/products/components/product-catalog";
+export { ProductCatalogSkeleton } from "@/features/products/components/product-catalog-skeleton";
 export { ProductDetail } from "@/features/products/components/product-detail";
+export { ProductDetailSkeleton } from "@/features/products/components/product-detail-skeleton";
 export { ProductGrid } from "@/features/products/components/product-grid";
 export {
   createProductServiceError,

@@ -6,6 +6,7 @@ import { ArrowLeft, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { EmptyState } from "@/components/ui/empty-state";
+import { Skeleton } from "@/components/ui/skeleton";
 import { CartLineItem } from "@/features/cart/components/cart-line-item";
 import { CartSummary } from "@/features/cart/components/cart-summary";
 import { useCart } from "@/features/cart/hooks/use-cart";
@@ -44,10 +45,7 @@ export function CartPage() {
         </div>
 
         {!isHydrated ? (
-          <EmptyState
-            title="Loading cart"
-            description="Restoring saved cart items."
-          />
+          <CartPageLoadingState />
         ) : isEmpty ? (
           <EmptyState
             title="Your cart is empty"
@@ -81,5 +79,54 @@ export function CartPage() {
         )}
       </section>
     </Container>
+  );
+}
+
+function CartPageLoadingState() {
+  return (
+    <div
+      className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start"
+      role="status"
+      aria-live="polite"
+      aria-label="Restoring saved cart items"
+    >
+      <div className="space-y-4" aria-hidden="true">
+        {Array.from({ length: 3 }, (_, index) => (
+          <div
+            key={index}
+            className="border-default bg-elevated grid gap-4 rounded-2xl border p-4 shadow-sm sm:grid-cols-[112px_minmax(0,1fr)_auto]"
+          >
+            <Skeleton className="aspect-square w-full sm:w-28" />
+            <div className="min-w-0 space-y-3">
+              <Skeleton className="h-4 w-28" />
+              <Skeleton className="h-5 w-full max-w-md" />
+              <Skeleton className="h-5 w-32" />
+            </div>
+            <div className="flex items-center gap-3 sm:flex-col sm:items-end sm:justify-between">
+              <Skeleton className="h-8 w-28" />
+              <Skeleton className="h-5 w-20" />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <aside
+        className="border-default bg-elevated space-y-4 rounded-2xl border p-4 shadow-sm"
+        aria-hidden="true"
+      >
+        <Skeleton className="h-5 w-32" />
+        <div className="space-y-3">
+          <div className="flex items-center justify-between gap-4">
+            <Skeleton className="h-4 w-20" />
+            <Skeleton className="h-4 w-16" />
+          </div>
+          <div className="flex items-center justify-between gap-4">
+            <Skeleton className="h-4 w-24" />
+            <Skeleton className="h-4 w-14" />
+          </div>
+          <Skeleton className="h-9 w-full" />
+        </div>
+      </aside>
+    </div>
   );
 }

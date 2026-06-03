@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useReducer, useRef } from "react";
 
 import type {
   ProductFilterState,
@@ -24,11 +24,58 @@ import {
 
 const SEARCH_DEBOUNCE_MS = 250;
 
+interface SearchInputState {
+  lastUrlSearchTerm: string;
+  value: string;
+}
+
+type SearchInputAction =
+  | {
+      type: "userInputChanged";
+      value: string;
+    }
+  | {
+      searchTerm: string;
+      type: "urlSearchTermChanged";
+    }
+  | {
+      searchTerm: string;
+      type: "urlSearchTermCommitted";
+    };
+
+function searchInputReducer(
+  state: SearchInputState,
+  action: SearchInputAction,
+): SearchInputState {
+  switch (action.type) {
+    case "userInputChanged":
+      return {
+        ...state,
+        value: action.value,
+      };
+    case "urlSearchTermChanged":
+      if (action.searchTerm === state.lastUrlSearchTerm) {
+        return state;
+      }
+
+      return {
+        lastUrlSearchTerm: action.searchTerm,
+        value: action.searchTerm,
+      };
+    case "urlSearchTermCommitted":
+      return {
+        ...state,
+        lastUrlSearchTerm: action.searchTerm,
+      };
+  }
+}
+
 export function useProductCatalogUrlFilters(products: Product[]) {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
   const searchParamsString = searchParams.toString();
+  const pendingInternalSearchTermRef = useRef<string | null>(null);
 
   const categories = useMemo(() => getProductCategories(products), [products]);
 
@@ -40,7 +87,38 @@ export function useProductCatalogUrlFilters(products: Product[]) {
     [categories, searchParamsString],
   );
 
-  const [searchInputValue, setSearchInputValue] = useState(filters.searchTerm);
+  const [searchInputState, dispatchSearchInput] = useReducer(
+    searchInputReducer,
+    filters.searchTerm,
+    (searchTerm): SearchInputState => ({
+      lastUrlSearchTerm: searchTerm,
+      value: searchTerm,
+    }),
+  );
+  const searchInputValue = searchInputState.value;
+
+  useEffect(() => {
+    if (pendingInternalSearchTermRef.current === filters.searchTerm) {
+      pendingInternalSearchTermRef.current = null;
+      dispatchSearchInput({
+        searchTerm: filters.searchTerm,
+        type: "urlSearchTermCommitted",
+      });
+      return;
+    }
+
+    dispatchSearchInput({
+      searchTerm: filters.searchTerm,
+      type: "urlSearchTermChanged",
+    });
+  }, [filters.searchTerm]);
+
+  const setSearchInputValue = useCallback((value: string) => {
+    dispatchSearchInput({
+      type: "userInputChanged",
+      value,
+    });
+  }, []);
 
   const navigateToFilters = useCallback(
     (nextFilters: ProductFilterState, navigationMode: "push" | "replace") => {
@@ -74,6 +152,7 @@ export function useProductCatalogUrlFilters(products: Product[]) {
     }
 
     const timeoutId = window.setTimeout(() => {
+      pendingInternalSearchTermRef.current = normalizedSearchInputValue;
       navigateToFilters(
         {
           ...filters,

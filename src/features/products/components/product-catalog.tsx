@@ -20,7 +20,6 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
 
   return (
     <ProductCatalogContent
-      key={catalogQueryString}
       products={products}
       catalogQueryString={catalogQueryString}
     />

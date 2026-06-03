@@ -12,6 +12,7 @@ import { ArrowRight, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
+import { Skeleton } from "@/components/ui/skeleton";
 import { CartDrawerItem } from "@/features/cart/components/cart-drawer-item";
 import { CartSummary } from "@/features/cart/components/cart-summary";
 import { useCart } from "@/features/cart/hooks/use-cart";
@@ -139,13 +140,7 @@ export function CartDrawer({ isOpen, onClose, triggerRef }: CartDrawerProps) {
         </div>
 
         {!isHydrated ? (
-          <div className="flex min-h-0 items-center px-5">
-            <EmptyState
-              title="Loading cart"
-              description="Restoring saved cart items."
-              className="w-full"
-            />
-          </div>
+          <CartDrawerLoadingState />
         ) : isEmpty ? (
           <div className="flex min-h-0 items-center px-5">
             <EmptyState
@@ -189,6 +184,39 @@ export function CartDrawer({ isOpen, onClose, triggerRef }: CartDrawerProps) {
             </div>
           </>
         )}
+      </div>
+    </div>
+  );
+}
+
+function CartDrawerLoadingState() {
+  return (
+    <div
+      className="min-h-0 overflow-hidden px-5 py-4"
+      role="status"
+      aria-live="polite"
+      aria-label="Restoring saved cart items"
+    >
+      <p className="text-muted mb-3 text-xs font-medium tracking-normal">
+        Restoring saved cart
+      </p>
+      <div className="space-y-3" aria-hidden="true">
+        {Array.from({ length: 3 }, (_, index) => (
+          <div
+            key={index}
+            className="border-default bg-elevated grid grid-cols-[72px_minmax(0,1fr)] gap-3 rounded-2xl border p-3 shadow-sm"
+          >
+            <Skeleton className="size-18" />
+            <div className="min-w-0 space-y-3">
+              <Skeleton className="h-4 w-4/5" />
+              <Skeleton className="h-4 w-24" />
+              <div className="flex items-center justify-between gap-3">
+                <Skeleton className="h-7 w-24" />
+                <Skeleton className="h-4 w-14" />
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

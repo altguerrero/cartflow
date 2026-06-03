@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { EmptyState } from "@/components/ui/empty-state";
+import { ErrorState } from "@/components/ui/error-state";
+import { RouteRefreshButton } from "@/components/ui/route-refresh-button";
 import {
   getProductById,
   ProductDetail,
@@ -68,9 +71,17 @@ export default async function ProductDetailPage({
   if (product instanceof ProductServiceError) {
     return (
       <Container className="py-10 sm:py-14 lg:py-16">
-        <EmptyState
-          title="Product could not load"
-          description="This product is temporarily unavailable. Please return to the catalog and try again later."
+        <ErrorState
+          title="Product is temporarily unavailable"
+          description="This product could not be reached right now. Try refreshing this page or return to the catalog."
+          primaryAction={<RouteRefreshButton>Try again</RouteRefreshButton>}
+          secondaryAction={
+            <Button asChild variant="outline">
+              <Link href={catalogQueryString ? `/?${catalogQueryString}` : "/"}>
+                Back to catalog
+              </Link>
+            </Button>
+          }
         />
       </Container>
     );

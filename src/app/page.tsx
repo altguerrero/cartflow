@@ -3,6 +3,8 @@ import { Suspense } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/ui/container";
 import { EmptyState } from "@/components/ui/empty-state";
+import { ErrorState } from "@/components/ui/error-state";
+import { RouteRefreshButton } from "@/components/ui/route-refresh-button";
 import {
   getProducts,
   ProductCatalog,
@@ -40,9 +42,10 @@ export default async function Home() {
             <ProductCatalog products={catalog.products} />
           </Suspense>
         ) : catalog.errorMessage ? (
-          <EmptyState
-            title="Products could not load"
+          <ErrorState
+            title="Products are temporarily unavailable"
             description={catalog.errorMessage}
+            primaryAction={<RouteRefreshButton>Try again</RouteRefreshButton>}
           />
         ) : (
           <EmptyState
@@ -70,7 +73,7 @@ async function loadCatalogProducts(): Promise<CatalogProductsResult> {
       return {
         products: [],
         errorMessage:
-          "The product catalog is temporarily unavailable. Please try again later.",
+          "The product catalog could not be reached right now. Try refreshing this page in a moment.",
       };
     }
 
