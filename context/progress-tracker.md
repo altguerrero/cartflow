@@ -4,11 +4,11 @@ Update this file after every meaningful implementation change.
 
 ## Current Phase
 
-Implementation
+Pre-implementation planning
 
 ## Current Goal
 
-Prepare for Unit 03: Product Catalog Data Layer.
+Confirm the Unit 03 specification before starting Product Catalog Data Layer implementation.
 
 ## Build Plan
 
@@ -61,6 +61,7 @@ Prepare for Unit 03: Product Catalog Data Layer.
 - Unit 02 style follow-up completed: shadcn primitives now consume CartFlow semantic tokens directly for consistent light and dark contrast.
 - Unit 02 globals follow-up completed: explicit utilities added for accent soft background and focus ring offset tokens.
 - Unit 02 globals cleanup completed: light theme tokens, compatibility aliases, fonts, and radius values consolidated into a single `:root` block.
+- Unit 03 specification created (`context/specs/03-product-catalog-data-layer.md`).
 
 ## In Progress
 
@@ -68,7 +69,7 @@ Prepare for Unit 03: Product Catalog Data Layer.
 
 ## Next Up
 
-- Implement Unit 03: Product Catalog Data Layer.
+- Start Unit 03 implementation only after confirming the approved scope in `context/specs/03-product-catalog-data-layer.md`.
 
 ## Open Questions
 
@@ -128,4 +129,6 @@ Prepare for Unit 03: Product Catalog Data Layer.
 - Unit 02 globals follow-up verification passed: `pnpm type-check` and `pnpm lint`.
 - Unit 02 globals cleanup verification passed: `pnpm type-check` and `pnpm lint`.
 - Local browser screenshot verification was not completed because the available Next dev server process was not reachable from this shell; existing dev log hydration warning was caused by a browser extension attribute (`cz-shortcut-listen`).
-- The next implementation session should start with Unit 03: Product Catalog Data Layer.
+- Unit 03 has not started implementation yet.
+- Before implementation begins, review and confirm `context/specs/03-product-catalog-data-layer.md`.
+- Once approved, Unit 03 implementation should remain limited to product types, Fake Store API services, transformation utilities, service error handling, and data-layer tests if needed.
