@@ -1,4 +1,11 @@
-import { createProductServiceError } from "@/features/products/services/products.errors";
+import {
+  createProductServiceError,
+  ProductServiceError,
+} from "@/features/products/services/products.errors";
+import {
+  FALLBACK_CATEGORIES,
+  FALLBACK_PRODUCTS,
+} from "@/features/products/data/fallback-products";
 import type { ProductCategory } from "@/features/products/types/product.types";
 import {
   transformCategoriesResponse,
@@ -23,7 +30,7 @@ type NextFetchOptions = RequestInit & {
 type ProductFetchOperation = "getProducts" | "getProductById" | "getCategories";
 
 function getApiBaseUrl(operation: ProductFetchOperation): URL {
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const apiBaseUrl = globalThis.process?.env?.NEXT_PUBLIC_API_URL;
 
   if (!apiBaseUrl) {
     throw createProductServiceError({
@@ -57,10 +64,11 @@ async function fetchCatalogJson(
   pathname: string,
   operation: ProductFetchOperation,
 ): Promise<unknown> {
+  const requestUrl = buildProductApiUrl(pathname, operation);
   let response: Response;
 
   try {
-    response = await fetch(buildProductApiUrl(pathname, operation), {
+    response = await fetch(requestUrl, {
       next: {
         revalidate: PRODUCT_CATALOG_REVALIDATE_SECONDS,
       },
@@ -94,27 +102,67 @@ async function fetchCatalogJson(
 }
 
 export async function getProducts() {
-  const data = await fetchCatalogJson(
-    PRODUCT_ENDPOINTS.products,
-    "getProducts",
-  );
-  return transformProductsResponse(data);
+  try {
+    const data = await fetchCatalogJson(
+      PRODUCT_ENDPOINTS.products,
+      "getProducts",
+    );
+    return transformProductsResponse(data);
+  } catch (error) {
+    if (isRecoverableCatalogError(error)) {
+      return FALLBACK_PRODUCTS;
+    }
+
+    throw error;
+  }
 }
 
 export async function getProductById(id: number) {
-  const data = await fetchCatalogJson(
-    PRODUCT_ENDPOINTS.productById(id),
-    "getProductById",
-  );
+  try {
+    const data = await fetchCatalogJson(
+      PRODUCT_ENDPOINTS.productById(id),
+      "getProductById",
+    );
 
-  return transformProductResponse(data);
+    return transformProductResponse(data);
+  } catch (error) {
+    const fallbackProduct = FALLBACK_PRODUCTS.find(
+      (product) => product.id === id,
+    );
+
+    if (fallbackProduct && isRecoverableCatalogError(error)) {
+      return fallbackProduct;
+    }
+
+    throw error;
+  }
 }
 
 export async function getCategories(): Promise<ProductCategory[]> {
-  const data = await fetchCatalogJson(
-    PRODUCT_ENDPOINTS.categories,
-    "getCategories",
-  );
+  try {
+    const data = await fetchCatalogJson(
+      PRODUCT_ENDPOINTS.categories,
+      "getCategories",
+    );
 
-  return transformCategoriesResponse(data);
+    return transformCategoriesResponse(data);
+  } catch (error) {
+    if (isRecoverableCatalogError(error)) {
+      return FALLBACK_CATEGORIES;
+    }
+
+    throw error;
+  }
+}
+
+function isRecoverableCatalogError(error: unknown): boolean {
+  if (!(error instanceof ProductServiceError)) {
+    return false;
+  }
+
+  if (error.code === "api_configuration_error") {
+    return false;
+  }
+
+  return error.status !== 404;
 }

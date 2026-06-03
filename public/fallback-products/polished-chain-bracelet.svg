@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title">
+  <title id="title">Polished chain bracelet</title>
+  <rect width="640" height="480" fill="#f8fafc"/>
+  <g fill="none" stroke="#2563eb" stroke-width="26" stroke-linecap="round">
+    <path d="M218 244c0-34 27-61 61-61h30"/>
+    <path d="M331 183h30c34 0 61 27 61 61"/>
+    <path d="M422 244c0 34-27 61-61 61h-30"/>
+    <path d="M309 305h-30c-34 0-61-27-61-61"/>
+  </g>
+  <circle cx="320" cy="244" r="34" fill="#dbeafe" stroke="#60a5fa" stroke-width="14"/>
+  <path d="M272 154 252 118M368 154l20-36M320 144v-44" fill="none" stroke="#93c5fd" stroke-width="12" stroke-linecap="round"/>
+</svg>

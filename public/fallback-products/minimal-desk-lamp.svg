@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title">
+  <title id="title">Minimal desk lamp</title>
+  <rect width="640" height="480" fill="#f8fafc"/>
+  <rect x="194" y="362" width="252" height="28" rx="14" fill="#475569"/>
+  <rect x="306" y="242" width="28" height="126" rx="14" fill="#64748b"/>
+  <path d="M320 244 404 122" fill="none" stroke="#94a3b8" stroke-width="24" stroke-linecap="round"/>
+  <path d="M386 96h116c9 0 16 7 16 16v22c0 49-40 89-89 89h-43V96Z" fill="#2563eb"/>
+  <circle cx="320" cy="240" r="28" fill="#dbeafe"/>
+  <path d="M405 223c42 26 91 24 116-2" fill="none" stroke="#bfdbfe" stroke-width="14" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title">
+  <title id="title">Structured canvas tote</title>
+  <rect width="640" height="480" fill="#f8fafc"/>
+  <path d="M204 164h232l28 224H176l28-224Z" fill="#e0f2fe"/>
+  <path d="M250 164c0-58 140-58 140 0" fill="none" stroke="#2563eb" stroke-width="18" stroke-linecap="round"/>
+  <path d="M204 164h232l10 78H194l10-78Z" fill="#bfdbfe"/>
+  <rect x="266" y="258" width="108" height="62" rx="12" fill="#2563eb"/>
+  <path d="M232 198h176" fill="none" stroke="#60a5fa" stroke-width="10" stroke-linecap="round"/>
+</svg>

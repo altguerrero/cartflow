@@ -55,7 +55,7 @@ Open [http://localhost:3000](http://localhost:3000).
 ```bash
 pnpm dev          # Start the local Next.js development server
 pnpm build        # Create a production build
-pnpm start        # Start the production server after building
+pnpm start        # Start the standalone production server after building
 pnpm test         # Run Vitest tests
 pnpm type-check   # Run TypeScript without emitting files
 pnpm lint         # Run ESLint
@@ -114,7 +114,7 @@ Sensitive: Off
 
 After changing environment variables in Vercel, redeploy the project so the production build uses the updated configuration.
 
-If the deployed app shows that products are temporarily unavailable, check that `NEXT_PUBLIC_API_URL` exists in the active Vercel environment and redeploy after saving it.
+If the deployed app shows that products are temporarily unavailable, check that `NEXT_PUBLIC_API_URL` exists in the active Vercel environment and redeploy after saving it. CartFlow also includes a small local fallback catalog for recoverable Fake Store API availability failures, but missing or invalid API configuration still surfaces as an error so deployment mistakes are not hidden.
 
 ## Docker
 

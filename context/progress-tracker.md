@@ -341,3 +341,12 @@ Unit 13 complete; prepare final delivery review and commit.
 - Docker follow-up added no dependencies and keeps `NEXT_PUBLIC_API_URL=https://fakestoreapi.com` as public build/runtime configuration.
 - Docker follow-up verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`; `.next/standalone/server.js` was generated successfully.
 - Docker image build was not executed because the local Docker daemon was not running (`/Users/computer/.docker/run/docker.sock` was unavailable).
+- Unit 14 deployment resilience hotfix was specified in `context/specs/14-vercel-catalog-resilience.md` after Vercel deployments continued showing the handled product API error state with the environment variable configured.
+- Unit 14 keeps Fake Store API as the primary product source and preserves server-first product fetching through the existing product service.
+- Unit 14 adds a small local fallback catalog with local SVG product images for recoverable provider/network failures only.
+- Unit 14 does not hide missing or invalid `NEXT_PUBLIC_API_URL` configuration and preserves product detail `404` behavior.
+- Unit 14 added focused product service tests for API success, fallback list/detail behavior, missing configuration, preserved `404` behavior, and fallback categories.
+- Unit 14 verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
+- Unit 14 test count is 85 passing tests across 14 test files.
+- Runtime script follow-up updated `pnpm start` to use `.next/standalone/server.js`, matching `output: "standalone"`.
+- Runtime script follow-up was verified with `PORT=3002 pnpm start` and a local `HTTP 200` response, then the test server was stopped.

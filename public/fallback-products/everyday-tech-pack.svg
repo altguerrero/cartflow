@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title">
+  <title id="title">Everyday tech pack</title>
+  <rect width="640" height="480" fill="#f8fafc"/>
+  <rect x="205" y="94" width="230" height="292" rx="38" fill="#1e293b"/>
+  <rect x="232" y="128" width="176" height="214" rx="20" fill="#334155"/>
+  <path d="M240 93c14-42 146-42 160 0" fill="none" stroke="#64748b" stroke-width="18" stroke-linecap="round"/>
+  <rect x="272" y="168" width="96" height="18" rx="9" fill="#93c5fd"/>
+  <rect x="270" y="228" width="100" height="78" rx="16" fill="#dbeafe"/>
+  <circle cx="385" cy="356" r="11" fill="#60a5fa"/>
+</svg>
