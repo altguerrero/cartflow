@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { ShoppingBag } from "lucide-react";
 
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { CartHeaderAction } from "@/features/cart";
 
 export function Header() {
   return (
@@ -37,17 +37,10 @@ export function Header() {
         <div className="flex items-center gap-2">
           <nav className="hidden items-center gap-1 sm:flex" aria-label="Main">
             <Button asChild variant="ghost">
-              <a href="#content">Products</a>
+              <Link href="/">Products</Link>
             </Button>
           </nav>
-          <Button
-            type="button"
-            variant="outline"
-            aria-label="Cart preview placeholder"
-          >
-            <ShoppingBag aria-hidden="true" />
-            <span className="hidden sm:inline">Cart</span>
-          </Button>
+          <CartHeaderAction />
           <ThemeToggle />
         </div>
       </Container>

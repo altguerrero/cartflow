@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { AddToCartButton } from "@/features/cart";
 import { ProductDetailBackLink } from "@/features/products/components/product-detail-back-link";
 import { ProductPrice } from "@/features/products/components/product-price";
 import { ProductRating } from "@/features/products/components/product-rating";
@@ -51,8 +52,13 @@ export function ProductDetail({
             </div>
           </div>
 
-          <div className="border-default border-y py-5">
+          <div className="border-default space-y-5 border-y py-5">
             <ProductPrice price={product.price} />
+            <AddToCartButton
+              product={product}
+              size="lg"
+              className="w-full sm:w-auto"
+            />
           </div>
 
           <section className="space-y-3" aria-labelledby="product-description">

@@ -8,7 +8,7 @@ Implementation
 
 ## Current Goal
 
-Implement Unit 09: Cart UI & Interactions.
+Prepare for Unit 10: Cart Persistence.
 
 ## Build Plan
 
@@ -20,7 +20,7 @@ Implement Unit 09: Cart UI & Interactions.
 - [x] Unit 06: URL State Synchronization
 - [x] Unit 07: Product Detail Page
 - [x] Unit 08: Cart State Management
-- [ ] Unit 09: Cart UI & Interactions
+- [x] Unit 09: Cart UI & Interactions
 - [ ] Unit 10: Cart Persistence
 - [ ] Unit 11: Loading & Error States
 - [ ] Unit 12: Testing
@@ -101,6 +101,17 @@ Implement Unit 09: Cart UI & Interactions.
 - Cart provider is wired into `AppProviders` using React Context + `useReducer` without adding cart UI or persistence.
 - Cart reducer and selector unit tests added.
 - Unit 09 specification created (`context/specs/09-cart-ui-interactions.md`).
+- Unit 09 completed: visible cart UI and interactions added using the Unit 08 cart context.
+- Product cards now expose accessible add-to-cart buttons without nesting buttons inside product detail links.
+- Product detail pages now expose an accessible add-to-cart action near product pricing.
+- Header cart placeholder replaced with an interactive cart action that displays total quantity and opens a cart drawer.
+- Cart drawer added with empty/populated states, quantity controls, item removal, clear cart, subtotal display, Escape close, backdrop close, and focus restoration.
+- Dedicated `/cart` page added with empty/populated states, line items, quantity controls, remove/clear actions, summary totals, and continue-shopping navigation.
+- Cart UI utility functions added for product-to-cart adaptation and cart formatting, with unit test coverage.
+- Unit 09 cart UI follow-up completed: header cart quantity badge contrast fixed in light mode and drawer list layout adjusted so cart items render above the summary.
+- Unit 09 drawer layout follow-up completed: cart drawer switched to deterministic viewport grid rows and compact item cards so the item list is visible between the drawer header and summary.
+- Unit 09 add-to-cart feedback follow-up completed: add-to-cart buttons now show a short local "Added" confirmation with an icon and accessible label after each click.
+- Unit 09 header navigation follow-up completed: the Products header action now links back to the catalog route instead of using a no-op content anchor.
 
 ## In Progress
 
@@ -108,7 +119,7 @@ Implement Unit 09: Cart UI & Interactions.
 
 ## Next Up
 
-- Review and implement Unit 09: Cart UI & Interactions.
+- Create or review the Unit 10 specification before implementing Cart Persistence.
 
 ## Open Questions
 
@@ -162,6 +173,9 @@ Implement Unit 09: Cart UI & Interactions.
 - Unit 08 intentionally keeps cart totals derived through selectors rather than storing derived totals in reducer state.
 - Unit 08 intentionally excludes localStorage persistence; persistence remains deferred to Unit 10.
 - Unit 09 will connect cart state to visible UI interactions while keeping localStorage persistence deferred to Unit 10.
+- Unit 09 keeps cart route composition server-first by rendering `/cart` as a Server Component shell around a client `CartPage`.
+- Unit 09 keeps header layout server-first by extracting only cart interactivity into `CartHeaderAction`.
+- Unit 09 preserves product detail navigation by separating product card links from add-to-cart buttons.
 
 ## Session Notes
 
@@ -230,3 +244,11 @@ Implement Unit 09: Cart UI & Interactions.
 - Production build required escalated network access for Google Fonts.
 - Unit 08 scope check confirmed cart code is isolated to `src/features/cart` plus `CartProvider` integration in `src/context/app-providers.tsx`; product feature code is not wired to cart actions.
 - Unit 09 specification has been created and limits the next implementation to cart UI, add-to-cart interactions, drawer/page management, quantity controls, remove/clear actions, and cart totals without persistence or checkout behavior.
+- Unit 09 implementation followed `context/specs/09-cart-ui-interactions.md` and did not add localStorage persistence, checkout, payment, order submission, backend cart storage, or new dependencies.
+- Unit 09 verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
+- Unit 09 scope check confirmed cart UI code does not read or write browser storage and does not perform product API calls.
+- Local dev server started for route validation, but curl from this sandbox could not connect to the listening process; the server process was stopped afterward.
+- Unit 09 cart UI follow-up verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
+- Unit 09 drawer layout follow-up verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
+- Unit 09 add-to-cart feedback follow-up verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
+- Unit 09 header navigation follow-up verification passed: `pnpm type-check` and `pnpm lint`.
