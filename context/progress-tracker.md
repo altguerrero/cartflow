@@ -8,25 +8,23 @@ Implementation
 
 ## Current Goal
 
-Implement Unit 02: Design System & Layout Shell.
+Prepare for Unit 03: Product Catalog Data Layer.
 
 ## Build Plan
 
 - [x] Unit 01: Project Foundation
-- [ ] Unit 02: Design System & Layout Shell
+- [x] Unit 02: Design System & Layout Shell
 - [ ] Unit 03: Product Catalog Data Layer
-- [ ] Unit 04: Category Filters
-- [ ] Unit 05: Sorting System
-- [ ] Unit 06: Search with Debounce
-- [ ] Unit 07: URL State Synchronization
-- [ ] Unit 08: Product Detail Page
-- [ ] Unit 09: Cart State Management
-- [ ] Unit 10: Cart UI & Interactions
-- [ ] Unit 11: Cart Persistence
-- [ ] Unit 12: Loading & Error States
-- [ ] Unit 13: Responsive Polish
-- [ ] Unit 14: Unit Testing
-- [ ] Unit 15: Documentation & Delivery
+- [ ] Unit 04: Product Grid UI
+- [ ] Unit 05: Filtering & Sorting System
+- [ ] Unit 06: URL State Synchronization
+- [ ] Unit 07: Product Detail Page
+- [ ] Unit 08: Cart State Management
+- [ ] Unit 09: Cart UI & Interactions
+- [ ] Unit 10: Cart Persistence
+- [ ] Unit 11: Loading & Error States
+- [ ] Unit 12: Testing
+- [ ] Unit 13: Performance & Final Polish
 
 ## Completed
 
@@ -53,14 +51,24 @@ Implement Unit 02: Design System & Layout Shell.
 - README updated for project setup, scripts, structure, and stack.
 - Unit 01 dark-mode token mapping corrected with explicit semantic Tailwind utilities.
 - TypeScript path alias configuration updated to avoid deprecated `baseUrl`.
+- Unit 02 completed: shadcn/ui initialized with `components.json`.
+- Initial shadcn/ui primitives added: Button, Card, Badge, and Skeleton.
+- `cn()` utility added for class composition.
+- Reusable AppShell, Header, Container, and EmptyState components created.
+- Theme provider and accessible theme toggle added with `next-themes`.
+- Root layout now wraps pages with AppShell through AppProviders.
+- Temporary homepage updated to validate the design system and reusable UI primitives.
+- Unit 02 style follow-up completed: shadcn primitives now consume CartFlow semantic tokens directly for consistent light and dark contrast.
+- Unit 02 globals follow-up completed: explicit utilities added for accent soft background and focus ring offset tokens.
+- Unit 02 globals cleanup completed: light theme tokens, compatibility aliases, fonts, and radius values consolidated into a single `:root` block.
 
 ## In Progress
 
-- Unit 02: Design System & Layout Shell.
+- None.
 
 ## Next Up
 
-- Complete Unit 02: Design System & Layout Shell.
+- Implement Unit 03: Product Catalog Data Layer.
 
 ## Open Questions
 
@@ -85,6 +93,13 @@ Implement Unit 02: Design System & Layout Shell.
 - Path aliases use relative `paths` entries without `baseUrl`.
 - Unit 01 introduces only foundation scaffolding and no business functionality.
 - Tailwind semantic utilities map to documented UI tokens through explicit `@utility` definitions.
+- Unit 02 introduces shadcn/ui as the base component foundation.
+- shadcn/ui tokens are mapped to CartFlow semantic CSS variables in `globals.css`.
+- Theme support uses `next-themes` with class-based light and dark tokens.
+- Header cart action remains a visual placeholder only; no cart state or cart logic exists yet.
+- Base UI primitives avoid unresolved shadcn token aliases and use CartFlow semantic utilities for foreground, muted text, surfaces, borders, and focus states.
+- Tailwind token aliases used by layout focus and accent states are exposed through explicit utilities in `globals.css`.
+- Global light-mode CSS variables are defined in one `:root` block; `.dark` only overrides theme color tokens.
 
 ## Session Notes
 
@@ -105,3 +120,12 @@ Implement Unit 02: Design System & Layout Shell.
 - Dark-mode browser validation confirmed readable text, expected dark background, expected card surface, and no console errors.
 - TypeScript configuration follow-up removed deprecated `baseUrl`; `pnpm type-check` and `pnpm lint` passed afterward.
 - Unit 02 implementation started: Design System & Layout Shell.
+- Unit 02 completed without product API calls, product feature logic, cart state, or cart persistence.
+- Dependencies added for Unit 02: `class-variance-authority`, `clsx`, `lucide-react`, `next-themes`, `radix-ui`, `tailwind-merge`, and `tw-animate-css`.
+- The shadcn CLI initialized project configuration and generated the required base UI components.
+- Validation commands were intentionally left for the user to run after completion.
+- Unit 02 style follow-up verification passed: `pnpm type-check` and `pnpm lint`.
+- Unit 02 globals follow-up verification passed: `pnpm type-check` and `pnpm lint`.
+- Unit 02 globals cleanup verification passed: `pnpm type-check` and `pnpm lint`.
+- Local browser screenshot verification was not completed because the available Next dev server process was not reachable from this shell; existing dev log hydration warning was caused by a browser extension attribute (`cz-shortcut-listen`).
+- The next implementation session should start with Unit 03: Product Catalog Data Layer.

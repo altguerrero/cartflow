@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 
-import { Header } from "@/components/layout/header";
+import { AppShell } from "@/components/layout/app-shell";
 import { AppProviders } from "@/context/app-providers";
 
 import "./globals.css";
@@ -30,14 +30,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full`}
     >
       <body className="bg-base text-primary min-h-full font-sans antialiased">
         <AppProviders>
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            {children}
-          </div>
+          <AppShell>{children}</AppShell>
         </AppProviders>
       </body>
     </html>

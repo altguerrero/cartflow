@@ -1,6 +1,8 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 :root {
+  /* CartFlow semantic tokens */
   --bg-base: #ffffff;
   --bg-surface: #f8fafc;
   --bg-elevated: #ffffff;
@@ -12,41 +14,71 @@
   --border-subtle: #cbd5e1;
   --accent-primary: #2563eb;
   --accent-primary-hover: #1d4ed8;
+  --accent-primary-foreground: #ffffff;
   --accent-primary-soft: #dbeafe;
   --state-success: #10b981;
   --state-error: #ef4444;
   --state-warning: #f59e0b;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-base: #020617;
-    --bg-surface: #0f172a;
-    --bg-elevated: #1e293b;
-    --bg-subtle: #334155;
-    --text-primary: #f8fafc;
-    --text-secondary: #cbd5e1;
-    --text-muted: #94a3b8;
-    --border-default: #334155;
-    --border-subtle: #475569;
-    --accent-primary: #3b82f6;
-    --accent-primary-hover: #60a5fa;
-    --accent-primary-soft: rgba(59, 130, 246, 0.12);
-    --state-success: #34d399;
-    --state-error: #f87171;
-    --state-warning: #fbbf24;
-  }
-}
-
-:root {
+  /* Compatibility aliases for shadcn/ui and Tailwind utilities */
+  --color-background: var(--bg-base);
+  --color-foreground: var(--text-primary);
+  --color-base: var(--bg-base);
+  --color-surface: var(--bg-surface);
+  --color-elevated: var(--bg-elevated);
+  --color-subtle: var(--bg-subtle);
+  --color-brand: var(--accent-primary);
+  --color-card: var(--bg-elevated);
+  --color-card-foreground: var(--text-primary);
+  --color-popover: var(--bg-elevated);
+  --color-popover-foreground: var(--text-primary);
+  --color-primary: var(--accent-primary);
+  --color-primary-foreground: var(--accent-primary-foreground);
+  --color-secondary: var(--bg-subtle);
+  --color-secondary-foreground: var(--text-primary);
+  --color-muted: var(--bg-subtle);
+  --color-muted-foreground: var(--text-muted);
+  --color-accent: var(--accent-primary-soft);
+  --color-accent-foreground: var(--accent-primary);
+  --color-destructive: var(--state-error);
+  --color-border: var(--border-default);
+  --color-border-default: var(--border-default);
+  --color-border-subtle: var(--border-subtle);
+  --color-input: var(--border-default);
+  --color-ring: var(--accent-primary);
   --color-accent-primary: var(--accent-primary);
   --color-accent-primary-hover: var(--accent-primary-hover);
+  --color-accent-primary-foreground: var(--accent-primary-foreground);
   --color-accent-primary-soft: var(--accent-primary-soft);
   --color-state-success: var(--state-success);
   --color-state-error: var(--state-error);
   --color-state-warning: var(--state-warning);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1rem;
+}
+
+.dark {
+  --bg-base: #020617;
+  --bg-surface: #0f172a;
+  --bg-elevated: #1e293b;
+  --bg-subtle: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --border-default: #334155;
+  --border-subtle: #475569;
+  --accent-primary: #3b82f6;
+  --accent-primary-hover: #60a5fa;
+  --accent-primary-foreground: #ffffff;
+  --accent-primary-soft: rgba(59, 130, 246, 0.12);
+  --state-success: #34d399;
+  --state-error: #f87171;
+  --state-warning: #fbbf24;
 }
 
 @layer utilities {
@@ -64,6 +96,10 @@
 
   .bg-subtle {
     background-color: var(--bg-subtle);
+  }
+
+  .bg-accent-primary-soft {
+    background-color: var(--accent-primary-soft);
   }
 
   .text-primary {
@@ -88,6 +124,14 @@
 
   .border-subtle {
     border-color: var(--border-subtle);
+  }
+
+  .ring-ring {
+    --tw-ring-color: var(--accent-primary);
+  }
+
+  .ring-offset-background {
+    --tw-ring-offset-color: var(--bg-base);
   }
 }
 

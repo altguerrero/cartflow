@@ -190,8 +190,7 @@ src/
 │   ├── ui/
 │   ├── layout/
 │   └── theme/
-├── lib/
-└── styles/
+└── lib/
 ```
 
 Expected files after this unit:
