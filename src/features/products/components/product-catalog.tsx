@@ -16,13 +16,25 @@ interface ProductCatalogProps {
 
 export function ProductCatalog({ products }: ProductCatalogProps) {
   const searchParams = useSearchParams();
+  const catalogQueryString = searchParams.toString();
 
   return (
-    <ProductCatalogContent key={searchParams.toString()} products={products} />
+    <ProductCatalogContent
+      key={catalogQueryString}
+      products={products}
+      catalogQueryString={catalogQueryString}
+    />
   );
 }
 
-function ProductCatalogContent({ products }: ProductCatalogProps) {
+interface ProductCatalogContentProps extends ProductCatalogProps {
+  catalogQueryString?: string;
+}
+
+function ProductCatalogContent({
+  catalogQueryString,
+  products,
+}: ProductCatalogContentProps) {
   const {
     categories,
     clearFilters,
@@ -56,7 +68,10 @@ function ProductCatalogContent({ products }: ProductCatalogProps) {
       />
 
       {filteredProducts.length > 0 ? (
-        <ProductGrid products={filteredProducts} />
+        <ProductGrid
+          products={filteredProducts}
+          catalogQueryString={catalogQueryString}
+        />
       ) : (
         <EmptyState
           title="No products match these controls"

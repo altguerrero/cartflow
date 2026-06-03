@@ -8,7 +8,7 @@ Implementation
 
 ## Current Goal
 
-Implement Unit 07: Product Detail Page.
+Prepare for Unit 08: Cart State Management.
 
 ## Build Plan
 
@@ -18,7 +18,7 @@ Implement Unit 07: Product Detail Page.
 - [x] Unit 04: Product Grid UI
 - [x] Unit 05: Filtering & Sorting System
 - [x] Unit 06: URL State Synchronization
-- [ ] Unit 07: Product Detail Page
+- [x] Unit 07: Product Detail Page
 - [ ] Unit 08: Cart State Management
 - [ ] Unit 09: Cart UI & Interactions
 - [ ] Unit 10: Cart Persistence
@@ -88,6 +88,12 @@ Implement Unit 07: Product Detail Page.
 - Product catalog now uses Next.js App Router navigation APIs for URL hydration, refresh/share preservation, and browser back/forward support.
 - Homepage remains a Server Component and wraps the URL-driven catalog in `Suspense` for static rendering compatibility with `useSearchParams`.
 - Unit 07 specification created (`context/specs/07-product-detail-page.md`).
+- Unit 07 completed: dynamic product detail pages are available at `/products/[productId]`.
+- Product cards now link to detail pages while preserving active catalog `q`, `category`, and `sort` query parameters.
+- Read-only product detail UI added with large product image, category, title, price, rating, review count, description, and catalog back link.
+- Product navigation utilities added for detail hrefs, catalog return hrefs, catalog query extraction, deterministic query ordering, and product ID parsing.
+- Product navigation unit tests added for detail URLs, catalog return URLs, query preservation, unknown query omission, immutability, ordering, and invalid ID handling.
+- Unit 07 not-found follow-up completed: product detail 404s now use a scoped not-found route with CartFlow metadata and UI instead of the framework default 404 title.
 
 ## In Progress
 
@@ -95,7 +101,7 @@ Implement Unit 07: Product Detail Page.
 
 ## Next Up
 
-- Implement Unit 07: Product Detail Page.
+- Create or review the Unit 08 specification before implementing Cart State Management.
 
 ## Open Questions
 
@@ -142,6 +148,9 @@ Implement Unit 07: Product Detail Page.
 - Unit 06 treats `q`, `category`, and `sort` query parameters as the source of truth for product catalog search, filtering, and sorting state.
 - Unit 06 omits default catalog filter values from the URL, preserving `/` as the canonical unfiltered catalog URL.
 - Unit 06 uses a `Suspense` boundary around the URL-driven catalog because `useSearchParams` in a statically rendered App Router page requires one for production builds.
+- Unit 07 product detail pages remain Server Components and fetch product data through `getProductById()`.
+- Unit 07 uses Promise-based dynamic route params for current Next.js App Router compatibility.
+- Unit 07 keeps catalog return navigation deterministic with explicit `Link` hrefs instead of browser-history-only `router.back()` behavior.
 
 ## Session Notes
 
@@ -199,3 +208,8 @@ Implement Unit 07: Product Detail Page.
 - Production build required escalated network access for Google Fonts.
 - Local server verification confirmed HTTP 200 responses for valid and invalid catalog query parameter URLs.
 - Unit 07 specification has been created and limits the next implementation to dynamic product detail pages, read-only product details, product card navigation, and catalog-state-preserving back navigation.
+- Unit 07 implementation followed `context/specs/07-product-detail-page.md` and did not add cart state, add-to-cart behavior, cart drawer behavior, cart persistence, recommendations, review forms, analytics, or new dependencies.
+- Unit 07 verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
+- Production build required escalated network access for Google Fonts.
+- Local server verification confirmed `/products/1?q=gold&category=jewelery&sort=rating-desc` returns HTTP 200, `/products/not-a-number` returns HTTP 404, and the product detail back link preserves only catalog query parameters.
+- Unit 07 not-found metadata follow-up verified with `pnpm test`, `pnpm type-check`, `pnpm lint`, and local HTTP/HTML checks for `/products/2as`.

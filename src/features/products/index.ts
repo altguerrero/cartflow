@@ -1,4 +1,5 @@
 export { ProductCatalog } from "@/features/products/components/product-catalog";
+export { ProductDetail } from "@/features/products/components/product-detail";
 export { ProductGrid } from "@/features/products/components/product-grid";
 export {
   createProductServiceError,
