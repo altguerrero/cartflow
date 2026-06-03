@@ -8,7 +8,7 @@ Implementation
 
 ## Current Goal
 
-Prepare for Unit 06: URL State Synchronization.
+Implement Unit 06: URL State Synchronization.
 
 ## Build Plan
 
@@ -81,6 +81,7 @@ Prepare for Unit 06: URL State Synchronization.
 - Product filtering and sorting unit tests added for title, description, category search, category filtering, price sorting, rating sorting, non-mutating sort behavior, composed filters, and empty results.
 - Product catalog client composition added without moving product fetching out of the server-rendered homepage.
 - Unit 05 controls spacing follow-up completed: category and sort selects now use explicit chevron icons with native select appearance removed so arrow spacing is consistent.
+- Unit 06 specification created (`context/specs/06-url-state-synchronization.md`).
 
 ## In Progress
 
@@ -88,7 +89,7 @@ Prepare for Unit 06: URL State Synchronization.
 
 ## Next Up
 
-- Create or review the Unit 06 specification before implementing URL State Synchronization.
+- Implement Unit 06: URL State Synchronization.
 
 ## Open Questions
 
@@ -183,3 +184,4 @@ Prepare for Unit 06: URL State Synchronization.
 - Production build required escalated network access for Google Fonts.
 - Unit 05 scope check confirmed no `searchParams`, router navigation, browser history, URL synchronization, or cart behavior was introduced in product catalog code.
 - Unit 05 controls spacing follow-up verification passed: `pnpm test`, `pnpm type-check`, and `pnpm lint`.
+- Unit 06 specification has been created and limits the next implementation to URL query parameter synchronization, URL hydration, and browser navigation support for catalog search, category, and sort state.
