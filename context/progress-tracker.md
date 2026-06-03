@@ -4,16 +4,16 @@ Update this file after every meaningful implementation change.
 
 ## Current Phase
 
-- Planning & Project Setup
+Planning & Specification
 
 ## Current Goal
 
-- Finalize project architecture, development workflow, and implementation plan before starting development.
+Prepare implementation specifications and establish the development roadmap before coding begins.
 
 ## Build Plan
 
-- [ ] Unit 01: Project Bootstrap & Tooling
-- [ ] Unit 02: API Layer & Data Models
+- [ ] Unit 01: Project Foundation
+- [ ] Unit 02: Products Data Layer
 - [ ] Unit 03: Product Catalog Layout
 - [ ] Unit 04: Category Filters
 - [ ] Unit 05: Sorting System
@@ -32,11 +32,16 @@ Update this file after every meaningful implementation change.
 
 - Project requirements analyzed.
 - Product scope defined.
-- Technical architecture defined.
-- Code standards defined.
-- AI workflow rules defined.
-- UI context defined.
+- Project naming finalized (CartFlow).
+- Project overview created.
+- Architecture context created.
+- UI context created.
+- Code standards created.
+- AI workflow rules created.
+- AGENTS.md created.
 - Progress tracker initialized.
+- Build plan created (`context/specs/00-build-plan.md`).
+- Unit 01 specification created (`context/specs/01-project-foundation.md`).
 
 ## In Progress
 
@@ -44,7 +49,7 @@ Update this file after every meaningful implementation change.
 
 ## Next Up
 
-- Unit 01: Project Bootstrap & Tooling
+- Implement Unit 01: Project Foundation.
 
 ## Open Questions
 
@@ -58,16 +63,22 @@ Update this file after every meaningful implementation change.
 - State Management: React Context + useReducer.
 - Cart persistence: localStorage.
 - Data Source: Fake Store API.
-- Search behavior: client-side filtering with debounce.
+- Search behavior: Client-side filtering with debounce.
 - URL synchronization for filters, sorting, and search state.
 - Testing: Vitest + React Testing Library.
 - Feature-oriented folder structure.
+- Application branding: CartFlow.
+- Development process: Spec-driven development with unit-based implementation.
 
 ## Session Notes
 
-- This project should be presented as a production-ready e-commerce application rather than as a technical assessment.
-- Focus on clean architecture, maintainability, accessibility, and user experience.
-- Every feature should have visible loading and error states.
-- Browser back navigation must preserve filter, sorting, and search state through URL parameters.
+- This project should be presented as a production-ready e-commerce application rather than a technical assessment.
+- Follow all context files before making architectural or implementation decisions.
+- The implementation roadmap is defined in `context/specs/00-build-plan.md`.
+- Implement one unit at a time.
+- Every unit must have a dedicated specification file before implementation begins.
+- Every feature must expose visible loading and error states.
+- Browser back navigation must preserve filters, sorting, and search state through URL parameters.
 - Cart functionality must work from both product listing and product detail pages.
 - Update this file whenever a unit is completed or a significant architectural decision is made.
+- The next implementation session should start with Unit 01: Project Foundation.
