@@ -8,13 +8,13 @@ Implementation
 
 ## Current Goal
 
-Prepare for Unit 02: Products Data Layer.
+Implement Unit 02: Design System & Layout Shell.
 
 ## Build Plan
 
 - [x] Unit 01: Project Foundation
-- [ ] Unit 02: Products Data Layer
-- [ ] Unit 03: Product Catalog Layout
+- [ ] Unit 02: Design System & Layout Shell
+- [ ] Unit 03: Product Catalog Data Layer
 - [ ] Unit 04: Category Filters
 - [ ] Unit 05: Sorting System
 - [ ] Unit 06: Search with Debounce
@@ -56,11 +56,11 @@ Prepare for Unit 02: Products Data Layer.
 
 ## In Progress
 
-- None.
+- Unit 02: Design System & Layout Shell.
 
 ## Next Up
 
-- Implement Unit 02: Products Data Layer.
+- Complete Unit 02: Design System & Layout Shell.
 
 ## Open Questions
 
@@ -104,4 +104,4 @@ Prepare for Unit 02: Products Data Layer.
 - Dark-mode follow-up fixed semantic utility definitions so `bg-base`, `text-primary`, `text-secondary`, `text-muted`, `text-brand`, `border-default`, and related utilities render correctly.
 - Dark-mode browser validation confirmed readable text, expected dark background, expected card surface, and no console errors.
 - TypeScript configuration follow-up removed deprecated `baseUrl`; `pnpm type-check` and `pnpm lint` passed afterward.
-- The next implementation session should start with Unit 02: Products Data Layer.
+- Unit 02 implementation started: Design System & Layout Shell.
