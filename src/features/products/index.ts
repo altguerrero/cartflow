@@ -1,3 +1,4 @@
+export { ProductCatalog } from "@/features/products/components/product-catalog";
 export { ProductGrid } from "@/features/products/components/product-grid";
 export {
   createProductServiceError,
@@ -10,6 +11,10 @@ export {
   getProductById,
   getProducts,
 } from "@/features/products/services/products.service";
+export type {
+  ProductFilterState,
+  ProductSortOption,
+} from "@/features/products/types/product-filters.types";
 export type {
   Product,
   ProductCategory,

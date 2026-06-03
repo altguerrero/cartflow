@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/container";
 import { EmptyState } from "@/components/ui/empty-state";
 import {
   getProducts,
-  ProductGrid,
+  ProductCatalog,
   ProductServiceError,
   type Product,
 } from "@/features/products";
@@ -28,15 +28,12 @@ export default async function Home() {
                 Browse products with clear pricing, ratings, and category
                 details from the CartFlow catalog.
               </p>
-              <p className="text-muted text-sm leading-6">
-                {catalog.products.length} products available
-              </p>
             </div>
           </div>
         </div>
 
         {catalog.products.length > 0 ? (
-          <ProductGrid products={catalog.products} />
+          <ProductCatalog products={catalog.products} />
         ) : catalog.errorMessage ? (
           <EmptyState
             title="Products could not load"

@@ -22,7 +22,9 @@ const fakeStoreProduct = {
 
 describe("product transformers", () => {
   it("transforms a valid Fake Store product response into a domain product", () => {
-    expect(transformProductResponse(fakeStoreProduct)).toEqual(fakeStoreProduct);
+    expect(transformProductResponse(fakeStoreProduct)).toEqual(
+      fakeStoreProduct,
+    );
   });
 
   it("transforms a valid Fake Store product list response", () => {

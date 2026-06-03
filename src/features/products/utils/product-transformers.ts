@@ -23,9 +23,7 @@ function isString(value: unknown): value is string {
 
 function isProductRating(value: unknown): value is ProductRating {
   return (
-    isRecord(value) &&
-    isFiniteNumber(value.rate) &&
-    isFiniteNumber(value.count)
+    isRecord(value) && isFiniteNumber(value.rate) && isFiniteNumber(value.count)
   );
 }
 

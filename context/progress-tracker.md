@@ -8,7 +8,7 @@ Implementation
 
 ## Current Goal
 
-Prepare for Unit 05: Filtering & Sorting System.
+Prepare for Unit 06: URL State Synchronization.
 
 ## Build Plan
 
@@ -16,7 +16,7 @@ Prepare for Unit 05: Filtering & Sorting System.
 - [x] Unit 02: Design System & Layout Shell
 - [x] Unit 03: Product Catalog Data Layer
 - [x] Unit 04: Product Grid UI
-- [ ] Unit 05: Filtering & Sorting System
+- [x] Unit 05: Filtering & Sorting System
 - [ ] Unit 06: URL State Synchronization
 - [ ] Unit 07: Product Detail Page
 - [ ] Unit 08: Cart State Management
@@ -76,14 +76,19 @@ Prepare for Unit 05: Filtering & Sorting System.
 - Unit 04 card spacing follow-up completed: product cards now override the base card vertical padding so the image container starts flush with the top of the card.
 - Unit 04 card spacing correction completed: product cards now keep top padding removed while restoring bottom padding so prices do not sit against the card edge.
 - Unit 05 specification created (`context/specs/05-filtering-sorting-system.md`).
+- Unit 05 completed: product catalog now supports local client-side search, category filtering, sorting, results summary, clear controls, and filtered empty states.
+- Product discovery utilities added for search, category filtering, sorting, category label formatting, unique category derivation, and active filter detection.
+- Product filtering and sorting unit tests added for title, description, category search, category filtering, price sorting, rating sorting, non-mutating sort behavior, composed filters, and empty results.
+- Product catalog client composition added without moving product fetching out of the server-rendered homepage.
+- Unit 05 controls spacing follow-up completed: category and sort selects now use explicit chevron icons with native select appearance removed so arrow spacing is consistent.
 
 ## In Progress
 
-- Unit 05: Filtering & Sorting System.
+- None.
 
 ## Next Up
 
-- Implement Unit 05: Filtering & Sorting System according to `context/specs/05-filtering-sorting-system.md`.
+- Create or review the Unit 06 specification before implementing URL State Synchronization.
 
 ## Open Questions
 
@@ -124,6 +129,9 @@ Prepare for Unit 05: Filtering & Sorting System.
 - Product images use `next/image` with `images.remotePatterns` scoped to `https://fakestoreapi.com/img/**`.
 - The homepage includes a minimal service-error fallback because Fake Store API can fail or challenge requests during prerendering.
 - Category display labels are handled locally in product card UI so external API category values remain unchanged in the product domain model.
+- Unit 05 catalog interactions use local client state only; URL query parameter synchronization is intentionally deferred to Unit 06.
+- Unit 05 filtering and sorting operate only on products already fetched by `getProducts()` and do not trigger additional product API requests.
+- Unit 05 debounce behavior is implemented inside the product catalog filter hook without adding a dependency or shared hook surface.
 
 ## Session Notes
 
@@ -169,3 +177,9 @@ Prepare for Unit 05: Filtering & Sorting System.
 - Unit 04 card spacing follow-up verification passed: `pnpm test`, `pnpm type-check`, and `pnpm lint`.
 - Unit 04 card spacing correction verification passed: `pnpm test`, `pnpm type-check`, and `pnpm lint`.
 - Unit 05 specification has been created and limits the next implementation to local client-side filtering, sorting, search, and debounce behavior only.
+- Unit 05 implementation followed `context/specs/05-filtering-sorting-system.md` and did not add URL synchronization, product detail routes, cart state, add-to-cart behavior, cart drawer behavior, or cart persistence.
+- Unit 05 added no new dependencies.
+- Unit 05 verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
+- Production build required escalated network access for Google Fonts.
+- Unit 05 scope check confirmed no `searchParams`, router navigation, browser history, URL synchronization, or cart behavior was introduced in product catalog code.
+- Unit 05 controls spacing follow-up verification passed: `pnpm test`, `pnpm type-check`, and `pnpm lint`.

@@ -94,7 +94,10 @@ async function fetchCatalogJson(
 }
 
 export async function getProducts() {
-  const data = await fetchCatalogJson(PRODUCT_ENDPOINTS.products, "getProducts");
+  const data = await fetchCatalogJson(
+    PRODUCT_ENDPOINTS.products,
+    "getProducts",
+  );
   return transformProductsResponse(data);
 }
 

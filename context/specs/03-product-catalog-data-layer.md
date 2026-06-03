@@ -136,9 +136,9 @@ src/features/products/services/products.service.ts
 Expose service functions:
 
 ```ts
-getProducts()
-getProductById(id)
-getCategories()
+getProducts();
+getProductById(id);
+getCategories();
 ```
 
 Responsibilities:

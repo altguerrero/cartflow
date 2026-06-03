@@ -5,20 +5,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ProductPrice } from "@/features/products/components/product-price";
 import { ProductRating } from "@/features/products/components/product-rating";
 import type { Product } from "@/features/products/types/product.types";
-
-const CATEGORY_LABELS: Record<string, string> = {
-  electronics: "Electronics",
-  jewelery: "Jewelry",
-  "men's clothing": "Men's Clothing",
-  "women's clothing": "Women's Clothing",
-};
+import { formatProductCategoryLabel } from "@/features/products/utils/product-filters";
 
 interface ProductCardProps {
   product: Product;
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  const categoryLabel = CATEGORY_LABELS[product.category] ?? product.category;
+  const categoryLabel = formatProductCategoryLabel(product.category);
 
   return (
     <Card className="h-full gap-0 pt-0 pb-4 transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:shadow-md">

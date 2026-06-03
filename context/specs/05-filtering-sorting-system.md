@@ -406,4 +406,3 @@ Do not introduce:
 - [ ] Accessibility basics verified.
 - [ ] No console errors.
 - [ ] `context/progress-tracker.md` updated after implementation.
-
