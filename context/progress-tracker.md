@@ -65,6 +65,7 @@ Prepare for Unit 04: Product Grid UI.
 - Unit 03 completed: product domain types, Fake Store API services, transformation utilities, service error model, and data-layer tests implemented.
 - Product feature public exports added through `src/features/products/index.ts`.
 - Vitest test runner added with minimal project configuration for data-layer tests.
+- Unit 04 specification created (`context/specs/04-product-grid-ui.md`).
 
 ## In Progress
 
@@ -72,7 +73,7 @@ Prepare for Unit 04: Product Grid UI.
 
 ## Next Up
 
-- Create or review the Unit 04 specification before implementing Product Grid UI.
+- Implement Unit 04: Product Grid UI according to `context/specs/04-product-grid-ui.md`.
 
 ## Open Questions
 
@@ -140,4 +141,4 @@ Prepare for Unit 04: Product Grid UI.
 - Unit 03 dependency added: `vitest` for pure data-layer tests.
 - Unit 03 verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
 - Production build required network access for `next/font/google` to fetch Geist fonts.
-- Unit 04 should not begin implementation until its dedicated specification is created or reviewed.
+- Unit 04 specification has been created and limits the next implementation to product catalog UI only.
