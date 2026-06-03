@@ -8,7 +8,7 @@ Implementation
 
 ## Current Goal
 
-Prepare for Unit 09: Cart UI & Interactions.
+Implement Unit 09: Cart UI & Interactions.
 
 ## Build Plan
 
@@ -100,6 +100,7 @@ Prepare for Unit 09: Cart UI & Interactions.
 - Cart selectors added for unique item count, total quantity, item subtotal, cart subtotal, empty state detection, and product ID lookup.
 - Cart provider is wired into `AppProviders` using React Context + `useReducer` without adding cart UI or persistence.
 - Cart reducer and selector unit tests added.
+- Unit 09 specification created (`context/specs/09-cart-ui-interactions.md`).
 
 ## In Progress
 
@@ -107,7 +108,7 @@ Prepare for Unit 09: Cart UI & Interactions.
 
 ## Next Up
 
-- Create or review the Unit 09 specification before implementing Cart UI & Interactions.
+- Review and implement Unit 09: Cart UI & Interactions.
 
 ## Open Questions
 
@@ -160,6 +161,7 @@ Prepare for Unit 09: Cart UI & Interactions.
 - Unit 08 establishes cart as the only global application state and manages it through React Context + `useReducer`.
 - Unit 08 intentionally keeps cart totals derived through selectors rather than storing derived totals in reducer state.
 - Unit 08 intentionally excludes localStorage persistence; persistence remains deferred to Unit 10.
+- Unit 09 will connect cart state to visible UI interactions while keeping localStorage persistence deferred to Unit 10.
 
 ## Session Notes
 
@@ -227,3 +229,4 @@ Prepare for Unit 09: Cart UI & Interactions.
 - Unit 08 verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
 - Production build required escalated network access for Google Fonts.
 - Unit 08 scope check confirmed cart code is isolated to `src/features/cart` plus `CartProvider` integration in `src/context/app-providers.tsx`; product feature code is not wired to cart actions.
+- Unit 09 specification has been created and limits the next implementation to cart UI, add-to-cart interactions, drawer/page management, quantity controls, remove/clear actions, and cart totals without persistence or checkout behavior.
