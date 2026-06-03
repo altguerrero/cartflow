@@ -8,7 +8,7 @@ Implementation
 
 ## Current Goal
 
-Implement Unit 08: Cart State Management.
+Prepare for Unit 09: Cart UI & Interactions.
 
 ## Build Plan
 
@@ -19,7 +19,7 @@ Implement Unit 08: Cart State Management.
 - [x] Unit 05: Filtering & Sorting System
 - [x] Unit 06: URL State Synchronization
 - [x] Unit 07: Product Detail Page
-- [ ] Unit 08: Cart State Management
+- [x] Unit 08: Cart State Management
 - [ ] Unit 09: Cart UI & Interactions
 - [ ] Unit 10: Cart Persistence
 - [ ] Unit 11: Loading & Error States
@@ -95,6 +95,11 @@ Implement Unit 08: Cart State Management.
 - Product navigation unit tests added for detail URLs, catalog return URLs, query preservation, unknown query omission, immutability, ordering, and invalid ID handling.
 - Unit 07 not-found follow-up completed: product detail 404s now use a scoped not-found route with CartFlow metadata and UI instead of the framework default 404 title.
 - Unit 08 specification created (`context/specs/08-cart-state-management.md`).
+- Unit 08 completed: cart feature boundary added with typed state, actions, reducer, selectors, context provider, consumer hook, and public exports.
+- Cart reducer now supports add item, increment existing item quantity, explicit quantity add, quantity update, remove item, remove by zero quantity, no-op updates, and clear cart.
+- Cart selectors added for unique item count, total quantity, item subtotal, cart subtotal, empty state detection, and product ID lookup.
+- Cart provider is wired into `AppProviders` using React Context + `useReducer` without adding cart UI or persistence.
+- Cart reducer and selector unit tests added.
 
 ## In Progress
 
@@ -102,7 +107,7 @@ Implement Unit 08: Cart State Management.
 
 ## Next Up
 
-- Implement Unit 08: Cart State Management.
+- Create or review the Unit 09 specification before implementing Cart UI & Interactions.
 
 ## Open Questions
 
@@ -152,6 +157,9 @@ Implement Unit 08: Cart State Management.
 - Unit 07 product detail pages remain Server Components and fetch product data through `getProductById()`.
 - Unit 07 uses Promise-based dynamic route params for current Next.js App Router compatibility.
 - Unit 07 keeps catalog return navigation deterministic with explicit `Link` hrefs instead of browser-history-only `router.back()` behavior.
+- Unit 08 establishes cart as the only global application state and manages it through React Context + `useReducer`.
+- Unit 08 intentionally keeps cart totals derived through selectors rather than storing derived totals in reducer state.
+- Unit 08 intentionally excludes localStorage persistence; persistence remains deferred to Unit 10.
 
 ## Session Notes
 
@@ -215,3 +223,7 @@ Implement Unit 08: Cart State Management.
 - Local server verification confirmed `/products/1?q=gold&category=jewelery&sort=rating-desc` returns HTTP 200, `/products/not-a-number` returns HTTP 404, and the product detail back link preserves only catalog query parameters.
 - Unit 07 not-found metadata follow-up verified with `pnpm test`, `pnpm type-check`, `pnpm lint`, and local HTTP/HTML checks for `/products/2as`.
 - Unit 08 specification has been created and limits the next implementation to cart state architecture, reducer logic, actions, selectors, provider integration, and tests without cart UI or persistence.
+- Unit 08 implementation followed `context/specs/08-cart-state-management.md` and did not add cart UI, add-to-cart buttons, product card cart wiring, product detail cart wiring, cart drawer behavior, or localStorage persistence.
+- Unit 08 verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
+- Production build required escalated network access for Google Fonts.
+- Unit 08 scope check confirmed cart code is isolated to `src/features/cart` plus `CartProvider` integration in `src/context/app-providers.tsx`; product feature code is not wired to cart actions.

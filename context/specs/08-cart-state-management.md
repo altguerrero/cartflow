@@ -136,10 +136,10 @@ Required reducer actions:
 Suggested action type names:
 
 ```ts
-"cart/add-item"
-"cart/update-item-quantity"
-"cart/remove-item"
-"cart/clear"
+"cart/add-item";
+"cart/update-item-quantity";
+"cart/remove-item";
+"cart/clear";
 ```
 
 Requirements:
@@ -223,12 +223,12 @@ Requirements:
 Suggested selector names:
 
 ```ts
-getCartItemCount
-getCartTotalQuantity
-getCartItemSubtotal
-getCartSubtotal
-isCartEmpty
-getCartItemByProductId
+getCartItemCount;
+getCartTotalQuantity;
+getCartItemSubtotal;
+getCartSubtotal;
+isCartEmpty;
+getCartItemByProductId;
 ```
 
 ---
