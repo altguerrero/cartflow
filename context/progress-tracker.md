@@ -131,6 +131,7 @@ Prepare for Unit 12: Testing.
 - Cart drawer and cart page hydration loading states now use product-shaped skeleton surfaces instead of minimal text/empty-state messaging.
 - Search input stability bug fixed: catalog URL updates no longer remount the catalog content while users are typing.
 - Search debounce race condition fixed: older debounced URL commits no longer overwrite newer in-progress search input text.
+- Unit 12 specification created (`context/specs/12-testing.md`).
 
 ## In Progress
 
@@ -304,3 +305,4 @@ Prepare for Unit 12: Testing.
 - Browser interaction verification for the search follow-up could not be completed because the existing Next dev server PID reported by Next was not reachable from this shell or the in-app browser; static verification and production build passed.
 - Search debounce race follow-up tracks internally scheduled search URL updates and commits them without replacing the current input value, preventing slow typing such as `mens` from being truncated to `men` or `me`.
 - Search debounce race follow-up verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
+- Unit 12 specification has been created and limits the next implementation to automated test coverage for critical product URL behavior, search debounce regressions, cart persistence/hydration, and cart interactions without adding runtime features or Unit 13 polish.
