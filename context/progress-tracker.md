@@ -8,14 +8,14 @@ Implementation
 
 ## Current Goal
 
-Prepare for Unit 04: Product Grid UI.
+Prepare for Unit 05: Filtering & Sorting System.
 
 ## Build Plan
 
 - [x] Unit 01: Project Foundation
 - [x] Unit 02: Design System & Layout Shell
 - [x] Unit 03: Product Catalog Data Layer
-- [ ] Unit 04: Product Grid UI
+- [x] Unit 04: Product Grid UI
 - [ ] Unit 05: Filtering & Sorting System
 - [ ] Unit 06: URL State Synchronization
 - [ ] Unit 07: Product Detail Page
@@ -66,6 +66,15 @@ Prepare for Unit 04: Product Grid UI.
 - Product feature public exports added through `src/features/products/index.ts`.
 - Vitest test runner added with minimal project configuration for data-layer tests.
 - Unit 04 specification created (`context/specs/04-product-grid-ui.md`).
+- Unit 04 completed: homepage now renders a server-composed product catalog experience backed by `getProducts()`.
+- Product UI components created under `src/features/products/components`: product grid, product card, product rating, and product price.
+- Product cards now display image, category, title, rating, review count, and USD price without cart actions or product detail links.
+- Next.js remote image configuration added for Fake Store API product images.
+- Minimal product service error fallback added to the homepage so API failures do not crash the catalog page.
+- Unit 04 visual follow-up completed: catalog copy refined, product count moved closer to the heading, product image padding adjusted, and API category values mapped to polished display labels in the UI.
+- Unit 04 image spacing follow-up completed: product image padding now reduces top whitespace while preserving side and bottom breathing room.
+- Unit 04 card spacing follow-up completed: product cards now override the base card vertical padding so the image container starts flush with the top of the card.
+- Unit 04 card spacing correction completed: product cards now keep top padding removed while restoring bottom padding so prices do not sit against the card edge.
 
 ## In Progress
 
@@ -73,7 +82,7 @@ Prepare for Unit 04: Product Grid UI.
 
 ## Next Up
 
-- Implement Unit 04: Product Grid UI according to `context/specs/04-product-grid-ui.md`.
+- Create or review the Unit 05 specification before implementing Filtering & Sorting System.
 
 ## Open Questions
 
@@ -109,6 +118,11 @@ Prepare for Unit 04: Product Grid UI.
 - Product catalog data uses native `fetch` with Next.js-compatible time-based revalidation.
 - Fake Store API responses are validated and transformed before being exposed as product domain objects.
 - Product data-layer validation uses Vitest without React Testing Library because this unit introduced no React hooks or components.
+- Unit 04 homepage remains a Server Component and fetches products through the product feature public API.
+- Unit 04 product UI components are presentational and do not perform API calls, filtering, sorting, URL state management, detail navigation, or cart mutations.
+- Product images use `next/image` with `images.remotePatterns` scoped to `https://fakestoreapi.com/img/**`.
+- The homepage includes a minimal service-error fallback because Fake Store API can fail or challenge requests during prerendering.
+- Category display labels are handled locally in product card UI so external API category values remain unchanged in the product domain model.
 
 ## Session Notes
 
@@ -142,3 +156,14 @@ Prepare for Unit 04: Product Grid UI.
 - Unit 03 verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
 - Production build required network access for `next/font/google` to fetch Geist fonts.
 - Unit 04 specification has been created and limits the next implementation to product catalog UI only.
+- Unit 04 implementation followed `context/specs/04-product-grid-ui.md` and did not add filtering, sorting, search, URL synchronization, product detail routes, cart state, add-to-cart behavior, or cart persistence.
+- Unit 04 added no new dependencies.
+- Unit 04 verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
+- Production build required escalated network access for Google Fonts.
+- Fake Store API returned a Cloudflare challenge from this environment during verification, so local rendering showed the catalog-level fallback instead of live products; the homepage still renders `ProductGrid` when `getProducts()` succeeds.
+- Local dev server responded with HTTP 200 on `http://127.0.0.1:3001`; the only browser-side warning observed was the known extension-injected `cz-shortcut-listen` hydration mismatch.
+- Browser-tool screenshot verification was unavailable in this turn, so responsive validation was limited to static class review and server response validation.
+- Unit 04 visual follow-up verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
+- Unit 04 image spacing follow-up verification passed: `pnpm test`, `pnpm type-check`, and `pnpm lint`.
+- Unit 04 card spacing follow-up verification passed: `pnpm test`, `pnpm type-check`, and `pnpm lint`.
+- Unit 04 card spacing correction verification passed: `pnpm test`, `pnpm type-check`, and `pnpm lint`.

@@ -1,3 +1,4 @@
+export { ProductGrid } from "@/features/products/components/product-grid";
 export {
   createProductServiceError,
   ProductServiceError,
