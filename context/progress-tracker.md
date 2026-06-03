@@ -8,7 +8,7 @@ Implementation
 
 ## Current Goal
 
-Implement Unit 06: URL State Synchronization.
+Prepare for Unit 07: Product Detail Page.
 
 ## Build Plan
 
@@ -17,7 +17,7 @@ Implement Unit 06: URL State Synchronization.
 - [x] Unit 03: Product Catalog Data Layer
 - [x] Unit 04: Product Grid UI
 - [x] Unit 05: Filtering & Sorting System
-- [ ] Unit 06: URL State Synchronization
+- [x] Unit 06: URL State Synchronization
 - [ ] Unit 07: Product Detail Page
 - [ ] Unit 08: Cart State Management
 - [ ] Unit 09: Cart UI & Interactions
@@ -82,6 +82,11 @@ Implement Unit 06: URL State Synchronization.
 - Product catalog client composition added without moving product fetching out of the server-rendered homepage.
 - Unit 05 controls spacing follow-up completed: category and sort selects now use explicit chevron icons with native select appearance removed so arrow spacing is consistent.
 - Unit 06 specification created (`context/specs/06-url-state-synchronization.md`).
+- Unit 06 completed: product catalog search, category, and sort state are now synchronized with URL query parameters.
+- Product URL state utilities added for parsing, validation, canonical query serialization, default omission, deterministic parameter ordering, and invalid query fallbacks.
+- Product URL state unit tests added for valid query parsing, invalid fallback behavior, default omission, combined serialization, ordering, immutability, and whitespace search handling.
+- Product catalog now uses Next.js App Router navigation APIs for URL hydration, refresh/share preservation, and browser back/forward support.
+- Homepage remains a Server Component and wraps the URL-driven catalog in `Suspense` for static rendering compatibility with `useSearchParams`.
 
 ## In Progress
 
@@ -89,7 +94,7 @@ Implement Unit 06: URL State Synchronization.
 
 ## Next Up
 
-- Implement Unit 06: URL State Synchronization.
+- Create or review the Unit 07 specification before implementing the Product Detail Page.
 
 ## Open Questions
 
@@ -133,6 +138,9 @@ Implement Unit 06: URL State Synchronization.
 - Unit 05 catalog interactions use local client state only; URL query parameter synchronization is intentionally deferred to Unit 06.
 - Unit 05 filtering and sorting operate only on products already fetched by `getProducts()` and do not trigger additional product API requests.
 - Unit 05 debounce behavior is implemented inside the product catalog filter hook without adding a dependency or shared hook surface.
+- Unit 06 treats `q`, `category`, and `sort` query parameters as the source of truth for product catalog search, filtering, and sorting state.
+- Unit 06 omits default catalog filter values from the URL, preserving `/` as the canonical unfiltered catalog URL.
+- Unit 06 uses a `Suspense` boundary around the URL-driven catalog because `useSearchParams` in a statically rendered App Router page requires one for production builds.
 
 ## Session Notes
 
@@ -185,3 +193,7 @@ Implement Unit 06: URL State Synchronization.
 - Unit 05 scope check confirmed no `searchParams`, router navigation, browser history, URL synchronization, or cart behavior was introduced in product catalog code.
 - Unit 05 controls spacing follow-up verification passed: `pnpm test`, `pnpm type-check`, and `pnpm lint`.
 - Unit 06 specification has been created and limits the next implementation to URL query parameter synchronization, URL hydration, and browser navigation support for catalog search, category, and sort state.
+- Unit 06 implementation followed `context/specs/06-url-state-synchronization.md` and did not add product detail routes, cart state, add-to-cart behavior, cart drawer behavior, cart persistence, loading skeletons, analytics, or new dependencies.
+- Unit 06 verification passed: `pnpm test`, `pnpm type-check`, `pnpm lint`, and `pnpm build`.
+- Production build required escalated network access for Google Fonts.
+- Local server verification confirmed HTTP 200 responses for valid and invalid catalog query parameter URLs.

@@ -1,11 +1,13 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
+
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
 import { ProductCatalogControls } from "@/features/products/components/product-catalog-controls";
 import { ProductGrid } from "@/features/products/components/product-grid";
 import { ProductResultsSummary } from "@/features/products/components/product-results-summary";
-import { useProductCatalogFilters } from "@/features/products/hooks/use-product-catalog-filters";
+import { useProductCatalogUrlFilters } from "@/features/products/hooks/use-product-catalog-url-filters";
 import type { Product } from "@/features/products/types/product.types";
 
 interface ProductCatalogProps {
@@ -13,6 +15,14 @@ interface ProductCatalogProps {
 }
 
 export function ProductCatalog({ products }: ProductCatalogProps) {
+  const searchParams = useSearchParams();
+
+  return (
+    <ProductCatalogContent key={searchParams.toString()} products={products} />
+  );
+}
+
+function ProductCatalogContent({ products }: ProductCatalogProps) {
   const {
     categories,
     clearFilters,
@@ -23,7 +33,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
     setSearchInputValue,
     updateCategory,
     updateSort,
-  } = useProductCatalogFilters(products);
+  } = useProductCatalogUrlFilters(products);
 
   return (
     <div className="space-y-5">

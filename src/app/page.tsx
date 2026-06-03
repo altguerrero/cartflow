@@ -1,9 +1,12 @@
+import { Suspense } from "react";
+
 import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/ui/container";
 import { EmptyState } from "@/components/ui/empty-state";
 import {
   getProducts,
   ProductCatalog,
+  ProductGrid,
   ProductServiceError,
   type Product,
 } from "@/features/products";
@@ -33,7 +36,9 @@ export default async function Home() {
         </div>
 
         {catalog.products.length > 0 ? (
-          <ProductCatalog products={catalog.products} />
+          <Suspense fallback={<ProductGrid products={catalog.products} />}>
+            <ProductCatalog products={catalog.products} />
+          </Suspense>
         ) : catalog.errorMessage ? (
           <EmptyState
             title="Products could not load"
