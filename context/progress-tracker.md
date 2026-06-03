@@ -75,14 +75,15 @@ Prepare for Unit 05: Filtering & Sorting System.
 - Unit 04 image spacing follow-up completed: product image padding now reduces top whitespace while preserving side and bottom breathing room.
 - Unit 04 card spacing follow-up completed: product cards now override the base card vertical padding so the image container starts flush with the top of the card.
 - Unit 04 card spacing correction completed: product cards now keep top padding removed while restoring bottom padding so prices do not sit against the card edge.
+- Unit 05 specification created (`context/specs/05-filtering-sorting-system.md`).
 
 ## In Progress
 
-- None.
+- Unit 05: Filtering & Sorting System.
 
 ## Next Up
 
-- Create or review the Unit 05 specification before implementing Filtering & Sorting System.
+- Implement Unit 05: Filtering & Sorting System according to `context/specs/05-filtering-sorting-system.md`.
 
 ## Open Questions
 
@@ -167,3 +168,4 @@ Prepare for Unit 05: Filtering & Sorting System.
 - Unit 04 image spacing follow-up verification passed: `pnpm test`, `pnpm type-check`, and `pnpm lint`.
 - Unit 04 card spacing follow-up verification passed: `pnpm test`, `pnpm type-check`, and `pnpm lint`.
 - Unit 04 card spacing correction verification passed: `pnpm test`, `pnpm type-check`, and `pnpm lint`.
+- Unit 05 specification has been created and limits the next implementation to local client-side filtering, sorting, search, and debounce behavior only.
