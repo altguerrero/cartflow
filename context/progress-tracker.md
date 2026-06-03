@@ -350,3 +350,7 @@ Unit 13 complete; prepare final delivery review and commit.
 - Unit 14 test count is 85 passing tests across 14 test files.
 - Runtime script follow-up updated `pnpm start` to use `.next/standalone/server.js`, matching `output: "standalone"`.
 - Runtime script follow-up was verified with `PORT=3002 pnpm start` and a local `HTTP 200` response, then the test server was stopped.
+- Docker verification follow-up updated the Docker base and runner images from Node 20 Alpine to Node 22 Alpine because `pnpm@11.5.1` requires Node 22 features.
+- Docker verification follow-up passed: `docker build --build-arg NEXT_PUBLIC_API_URL=https://fakestoreapi.com -t cartflow .`.
+- Docker verification follow-up passed: `docker run --rm --name cartflow-test -p 3003:3000 -e NEXT_PUBLIC_API_URL=https://fakestoreapi.com cartflow` served `HTTP 200` at `http://127.0.0.1:3003`.
+- Docker container HTML verification confirmed the catalog includes rendered Fake Store products and does not render the "Products are temporarily unavailable" state.

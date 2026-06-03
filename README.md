@@ -139,7 +139,7 @@ docker run --rm \
 
 Open [http://localhost:3000](http://localhost:3000).
 
-The Dockerfile uses the Next.js standalone production output. Keep `NEXT_PUBLIC_API_URL` available during the image build because the catalog route is statically generated with ISR.
+The Dockerfile uses Node 22 and the Next.js standalone production output. Keep `NEXT_PUBLIC_API_URL` available during the image build because the catalog route is statically generated with ISR.
 
 ## Scope
 
